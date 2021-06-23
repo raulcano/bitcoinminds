@@ -24,7 +24,7 @@ One of the following values:
 - other
 
 ### link
-An URL to the resource.
+A valid URL to the resource.
 
 ### language
 A two-letter code of the language in which this resource is presented. If one resource (e.g. one article) is translated to several languages, this must be included in the file with one line per language.
