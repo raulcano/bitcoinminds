@@ -23,6 +23,7 @@ One of the following values:
 - video
 - course
 - tool
+- collection
 - other
 
 ### link
