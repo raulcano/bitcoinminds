@@ -11,7 +11,13 @@
           }"
         >
         </sidebar-item>
-
+<sidebar-item
+                :link="{
+                  name: 'Resources',
+                  path: '/resources',
+                  icon: 'ni ni-bullet-list-67 text-red'
+                }">
+        </sidebar-item>
         <sidebar-item
             :link="{
               name: 'Icons',
