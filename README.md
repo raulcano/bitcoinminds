@@ -1,7 +1,7 @@
 # Bitcoin resources
 
 The purpose of this repository is to store:
-- A single CSV file with a curated collection of resources to study and learn from Bitcoin (e.g. articles, books, podcasts, etc.).
+- A [single CSV](https://github.com/raulcano/bitcoin-resources/blob/main/bitcoin-resources.csv) file with a curated collection of resources to study and learn from Bitcoin (e.g. articles, books, podcasts, etc.).
 - The code of a simple Bootstrap Vue interface to load and present the resources from the CSV file.
 
 ## CSV file format
