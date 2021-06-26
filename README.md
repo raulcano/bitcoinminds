@@ -4,6 +4,21 @@ The purpose of this repository is to store:
 - A [single CSV](bitcoin-resources.csv) file with a curated collection of resources to study and learn from Bitcoin (e.g. articles, books, podcasts, etc.).
 - The code of a simple Bootstrap Vue interface to load and present the resources from the CSV file.
 
+## Installing the User Interface
+Go to a folder of your choice and clone this repository:
+```
+git clone https://github.com/raulcano/bitcoin-resources.git
+```
+
+CD into the folder ```bitcoin-resources-ui``` and install the packages:
+```
+npm install
+```
+Once the install is finished, start the server and visit in your browser the enabled local URL:
+```
+npm run serve
+```
+
 ## CSV file format
 
 The following fields and formats are the ones to be used in the file.
