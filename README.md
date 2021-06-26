@@ -1,6 +1,8 @@
 # Bitcoin resources
 
-The purpose of this repository is to store a single CSV file with a curated collection of resources to study and learn from Bitcoin (e.g. articles, books, podcasts, etc.).
+The purpose of this repository is to store:
+- A single CSV file with a curated collection of resources to study and learn from Bitcoin (e.g. articles, books, podcasts, etc.).
+- The code of a simple Bootstrap Vue interface to load and present the resources from the CSV file.
 
 ## CSV file format
 
