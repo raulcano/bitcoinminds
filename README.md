@@ -24,6 +24,9 @@ npm run serve
 The following fields and formats are the ones to be used in the file.
 The first row of the CSV file will be the name of the column (each field).
 
+### id
+A unique incremental integer acting as the primary key
+
 ### date
 A string of the format YYYY-MM-DD
 
