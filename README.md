@@ -51,7 +51,9 @@ A valid URL to the resource.
 A two-letter code of the language in which this resource is presented. If one resource (e.g. one article) is translated to several languages, this must be included in the file with one line per language.
 
 ### author
-The name of the author.
+The name of the author(s). 
+It can be empty if its unknown.
+If there are multiple authors, they shall be separated by a comma.
 
 ### keywords
 A comma separated list of keywords reflecting the main topics discussed in the resource.
