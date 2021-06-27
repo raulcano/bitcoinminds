@@ -68,7 +68,7 @@
           </template>
 
           <template v-slot:cell(language)="data">
-              <b-img thumbnail fluid :src="'src/assets/flags/' + flags_dict[data.item.language]" :alt="data.item.language"></b-img>
+              <b-img fluid v-bind="flagProps" :src="'/img/flags/' + flags_dict[data.item.language]" :alt="data.item.language" :title="data.item.language"></b-img>
           </template>
 
           <template v-slot:cell(keywords)="data">
@@ -109,6 +109,7 @@
         sortBy: 'date',
         totalRows: 1,
         flags_dict,
+        flagProps: { width: 20, height: 20, class: 'm1' }
       };
     },
     mounted() {

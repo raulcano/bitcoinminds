@@ -2,6 +2,10 @@
  * 
  * @returns the resources json read from the CSV file
  */
+import $ from 'jquery';
+// var csv = require('jquery-csv');
+//  import VuePapaParse from 'vue-papa-parse'
+
 function readResources(){
   var sourceURL = 'https://raw.githubusercontent.com/raulcano/bitcoin-resources/main/bitcoin-resources.csv';
 
@@ -9,6 +13,28 @@ function readResources(){
   // **
   // To-do
   // **
+  // read the csv file and load it
+
+  
+  // $.csv.toArray(sourceURL);
+
+  // var data = VuePapaParse.parse(sourceURL);
+  // alert(data)
+  // VuePapaParse.parse(sourceURL, {
+  //   download: true,
+  //   // rest of config ...
+  // })
+
+	// $.ajax({
+	//   type: "GET",  
+	//   url: sourceURL,
+	//   dataType: "text",       
+	//   success: function(response)  
+	//   {
+	// 	data = $.csv.toArrays(response);
+	// 	alert(data);
+	//   }   
+	// });
 
   var items = [
     {

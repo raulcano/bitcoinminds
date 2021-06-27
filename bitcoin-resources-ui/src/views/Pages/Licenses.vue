@@ -69,7 +69,7 @@
         <b-row class="mt-2">
           <b-col>
           <b-card>
-            The logo icon of a Bitcoin was created by <a href='https://www.freepik.com/free-photos-vectors/business'>by rawpixel.com - www.freepik.com</a>
+            The Bitcoin logo was created by <a href='https://www.freepik.com/free-photos-vectors/business'>by rawpixel.com - www.freepik.com</a>
           </b-card>
         </b-col>
       </b-row>
