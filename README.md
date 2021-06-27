@@ -55,6 +55,9 @@ A comma separated list of keywords reflecting the main topics discussed in the r
 Some suggested keywords are:
 - wallets, economics, history, security, lightning, scaling, etc.
 
+### description
+A long text describing the content that is presented. E.g. the summary of a book.
+
 ### other
 Other metadata in the form of a JSON dictionary, that is, containig a set of key-value pairs. For example:
 ```
