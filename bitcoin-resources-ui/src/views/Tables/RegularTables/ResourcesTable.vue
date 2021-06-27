@@ -34,11 +34,22 @@
 
             <!-- Download CSV file -->
             <b-col text-right>
-                <b-button variant='outline-primary'>
+              <b-button variant='outline-primary'  title="Download a CSV file with all the contents of the table">
                 <b-link :href="sourceURL" target="_blank">
-                    Download CSV file
+                    Download
                 </b-link>
                 </b-button>
+                
+                <b-button 
+                  variant='outline-primary' 
+                  title="Group the table rows by the keywords (or categories)" 
+                  :isActive="groupByIsActive"
+                  @click="groupBy"
+                  >
+                    {{groupByButtonText}}
+                </b-button>
+
+                
             </b-col>
         </b-row>
 
@@ -109,12 +120,19 @@
         sortBy: 'date',
         totalRows: 1,
         flags_dict,
-        flagProps: { width: 20, height: 20, class: 'm1' }
+        flagProps: { width: 20, height: 20, class: 'm1' },
+        groupByIsActive: false,
+
       };
     },
     mounted() {
       // Set the initial number of items
       this.totalRows = this.resources.length
+    },
+    computed: {
+      groupByButtonText(){
+        return (this.groupByIsActive === true) ? 'Ungroup rows' : 'Group rows by keyword';
+      }
     },
     methods: {
       onFiltered(filteredItems) {
@@ -122,9 +140,11 @@
         this.totalRows = filteredItems.length
         this.currentPage = 1
       },
-      getImage(image) {
-        // return "/assets/" + image
-        // return require('@/assets/' + image)
+      groupBy(){
+
+        // TODO 
+        // all the logic to group and ungroup the rows goes here
+        this.groupByIsActive = !this.groupByIsActive;
       }
     }
   }
