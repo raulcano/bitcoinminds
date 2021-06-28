@@ -35,14 +35,15 @@ A string with the title of the resource.
 
 ### type
 One of the following values:
-- article
-- book
-- audio
-- video
-- course
-- tool
-- collection
-- other
+- ```article```
+- ```book```
+- ```audio``` : Individual audio file or podcast episode (e.g. link to a Spotify podcast episode). 
+- ```video``` : Individual video file or podcast episode in the form of video (e.g. link to a Youtube video). 
+- ```podcast``` : Link to the homepage of a podcast (not to individual episodes). For the moment, we include here both audio and video podcasts (e.g. Youtube channels).
+- ```course```
+- ```tool```
+- ```collection``` : This refers to a place that collects a variety of links to resources, which can be of many sorts (articles, books, videos, etc.).
+- ```other```
 
 ### link
 A valid URL to the resource.
