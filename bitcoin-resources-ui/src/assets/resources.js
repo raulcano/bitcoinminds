@@ -3,12 +3,60 @@
  * @returns the resources json read from the CSV file
  */
 import $ from 'jquery';
-// var csv = require('jquery-csv');
-//  import VuePapaParse from 'vue-papa-parse'
+
+import Papa from 'vue-papa-parse'
+var sourceFile = 'bitcoin-resources.csv'
+var items = []
+
+function processData(allText) {
+  var allTextLines = allText.split(/\r\n|\n/);
+  var headers = allTextLines[0].split(',');
+  var lines = [];
+
+  for (var i=1; i<allTextLines.length; i++) {
+      var data = allTextLines[i].split(',');
+      if (data.length == headers.length) {
+
+          var tarr = [];
+          for (var j=0; j<headers.length; j++) {
+              tarr.push(headers[j]+":"+data[j]);
+          }
+          lines.push(tarr);
+      }
+  }
+  console.log(lines); 
+
+}
+$(function() {
+  let csv = Papa.parse(sourceFile, {})
+  console.log(csv.data)
+  // console.dir(VuePapaParse)
+  // var objs = Object.getOwnPropertyNames(VuePapaParse);
+  // for(var i in objs ){
+  //   console.log(objs[i]);
+  // }
+  // $.getScript("../../node_modules/jquery-csv/src/jquery.csv.js",function(){
+  // $.getScript("/../node_modules/jquery-csv/src/jquery.csv.js",function(){
+  //   console.log($.csv);
+  // });
+  
+  // $.ajax({
+  //     type: "GET",
+  //     url: sourceFile,
+  //     dataType: "text",
+  //     data: {
+  //         html: sourceFile
+  //     },
+  //     success: function(response) {
+  //       data = $.csv.toArrays(response);
+	//      	alert(data);
+  //     }
+  // });
+});
+
 
 function readResources(){
-  var sourceURL = 'https://raw.githubusercontent.com/raulcano/bitcoin-resources/main/bitcoin-resources.csv';
-
+  
   // The logic to retrieve the items goes here
   // **
   // To-do
@@ -36,8 +84,9 @@ function readResources(){
 	//   }   
 	// });
 
-  var items = [
+  items = [
     {
+      id: '1', 
       date: '2021-05',
       title: 'aThe bullish case for Bitcoin',
       type: 'article',
@@ -49,6 +98,7 @@ function readResources(){
       other: {}
     },
     {
+      id: '2', 
       date: '2020-06',
       title: 'bMasters and slave of money',
       type: 'article',
@@ -63,6 +113,7 @@ function readResources(){
           }
     },
     {
+      id: '3', 
       date: '2021-05',
       title: 'cThe bullish case for Bitcoin',
       type: 'article',
@@ -74,6 +125,7 @@ function readResources(){
       other: {}
     },
     {
+      id: '4', 
       date: '2020-06',
       title: 'dMasters and slave of money',
       type: 'article',
@@ -88,6 +140,7 @@ function readResources(){
           }
     },
     {
+      id: '5', 
       date: '2021-05',
       title: 'eThe bullish case for Bitcoin',
       type: 'article',
@@ -99,6 +152,7 @@ function readResources(){
       other: {}
     },
     {
+      id: '6', 
       date: '2020-06',
       title: 'fMasters and slave of money',
       type: 'article',
@@ -113,6 +167,7 @@ function readResources(){
           }
     },
     {
+      id: '7', 
       date: '2021-05',
       title: 'gThe bullish case for Bitcoin',
       type: 'article',
@@ -124,6 +179,7 @@ function readResources(){
       other: {}
     },
     {
+      id: '8', 
       date: '2020-06',
       title: 'hMasters and slave of money',
       type: 'article',
@@ -139,7 +195,7 @@ function readResources(){
     }
   ];
   
-  return { items: items, sourceURL: sourceURL }
+  return { items: items, sourceURL: sourceFile }
 }
 
 export default readResources()

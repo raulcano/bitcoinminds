@@ -70,8 +70,12 @@
 </template>
 <script>
   import { Dropdown, DropdownItem, DropdownMenu, Table, TableColumn } from 'element-ui';
-  import resources from './Tables/resources';
+  import resources from '@/assets/resources';
   import ResourcesTable from "./Tables/RegularTables/ResourcesTable";
+  
+  import $ from 'jquery';
+  import Papa from 'vue-papa-parse'
+
   export default {
     components: {
       ResourcesTable,
@@ -85,6 +89,22 @@
       return {
         resources,
       };
+    },
+    mounted() {
+      $(function() {
+          // var csv = require('jquery-csv')
+          var sourceFile = 'bitcoin-resources.csv'
+          // $.csv.toArray(sourceFile);
+          let csv = Papa.parse(sourceFile, {})
+          console.log(csv.data) 
+      });
+    },
+    methods: {
+      onFiltered(filteredItems) {
+        // Trigger pagination to update the number of buttons/pages due to filtering
+        this.totalRows = filteredItems.length
+        this.currentPage = 1
+      },
     }
   };
 </script>
