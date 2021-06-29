@@ -61,7 +61,8 @@
     <b-container fluid class="mt--7">
       <b-row>
         <b-col>
-          <resources-table :resources="resources.items" :sourceURL="resources.sourceURL"></resources-table>
+          <!-- <resources-table :resources="resources.items" :sourceURL="resources.sourceURL"></resources-table> -->
+          <resources-table :resources="resources" :sourceURL="sourceURL"></resources-table>
         </b-col>
       </b-row>
       <div class="mt-5"></div>
@@ -70,11 +71,8 @@
 </template>
 <script>
   import { Dropdown, DropdownItem, DropdownMenu, Table, TableColumn } from 'element-ui';
-  import resources from '@/assets/resources';
   import ResourcesTable from "./Tables/RegularTables/ResourcesTable";
   
-  import $ from 'jquery';
-  import Papa from 'vue-papa-parse'
 
   export default {
     components: {
@@ -87,24 +85,35 @@
     },
     data() {
       return {
-        resources,
+        resources: [],
+        sourceURL: 'bitcoin-resources.csv'
       };
     },
     mounted() {
-      $(function() {
-          // var csv = require('jquery-csv')
-          var sourceFile = 'bitcoin-resources.csv'
-          // $.csv.toArray(sourceFile);
-          let csv = Papa.parse(sourceFile, {})
-          console.log(csv.data) 
-      });
+      this.resources = this.readResources();
     },
     methods: {
-      onFiltered(filteredItems) {
-        // Trigger pagination to update the number of buttons/pages due to filtering
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
-      },
+      readResources(){
+        this.$papa.parse(this.sourceURL, {
+              header: true,
+              complete: function (results) {
+                  console.log(results.data);
+              }
+          });
+        return [{
+            id: '1', 
+            date: '2021-05',
+            title: 'aThe bullish case for Bitcoin',
+            type: 'article',
+            link: 'https://testlink.com/bullish-case',
+            language: 'es',
+            author: 'Vijay',
+            keywords: ['bullish', 'case', 'bitcoin'],
+            description: 'odo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut met',
+            other: {}
+          }
+        ]
+      }
     }
   };
 </script>
