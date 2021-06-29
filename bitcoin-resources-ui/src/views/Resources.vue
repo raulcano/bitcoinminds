@@ -61,7 +61,8 @@
     <b-container fluid class="mt--7">
       <b-row>
         <b-col>
-          <resources-table :resources="resources.items" :sourceURL="resources.sourceURL"></resources-table>
+          <!-- <resources-table :resources="resources.items" :sourceURL="resources.sourceURL"></resources-table> -->
+          <resources-table></resources-table>
         </b-col>
       </b-row>
       <div class="mt-5"></div>
@@ -70,8 +71,9 @@
 </template>
 <script>
   import { Dropdown, DropdownItem, DropdownMenu, Table, TableColumn } from 'element-ui';
-  import resources from './Tables/resources';
   import ResourcesTable from "./Tables/RegularTables/ResourcesTable";
+  
+
   export default {
     components: {
       ResourcesTable,
@@ -83,8 +85,9 @@
     },
     data() {
       return {
-        resources,
       };
+    },
+    methods: {
     }
   };
 </script>

@@ -15,6 +15,7 @@
 
 */
 import Vue from 'vue';
+import VuePapaParse from 'vue-papa-parse'
 import DashboardPlugin from './plugins/dashboard-plugin';
 import App from './App.vue';
 
@@ -23,6 +24,7 @@ import App from './App.vue';
 import router from './routes/router';
 // plugin setup
 Vue.use(DashboardPlugin);
+Vue.use(VuePapaParse);
 
 /* eslint-disable no-new */
 new Vue({

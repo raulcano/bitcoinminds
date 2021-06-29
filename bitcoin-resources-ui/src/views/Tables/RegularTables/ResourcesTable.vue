@@ -58,7 +58,7 @@
         
         <b-table 
           hover 
-          :items="resources" 
+          :items="itemsProvider" 
           :per-page="perPage" 
           :current-page="currentPage"
           :fields="fields"
@@ -70,7 +70,7 @@
           responsive="sm"
           @filtered="onFiltered"
         >
-        <template v-slot:cell(title)="data">
+        <template v-slot:cell(title)="data" mw-10>
             <b-link :href="data.item.link" target="_blank">{{data.item.title}}</b-link>
           </template>
 
@@ -80,6 +80,10 @@
 
           <template v-slot:cell(language)="data">
               <b-img fluid v-bind="flagProps" :src="'/img/flags/' + flags_dict[data.item.language]" :alt="data.item.language" :title="data.item.language"></b-img>
+          </template>
+
+          <template v-slot:cell(author)="data">
+             <b-button pill variant="secondary" size="sm" v-for="author in data.item.author" :key="author">{{author}}</b-button>
           </template>
 
           <template v-slot:cell(keywords)="data">
@@ -96,7 +100,6 @@
   import flags_dict from '@/assets/language-flags-mapping.js'
   export default {
     name: 'resources-table',
-    props: ['resources', 'sourceURL'],
     components: {
       [Table.name]: Table,
       [TableColumn.name]: TableColumn
@@ -114,7 +117,7 @@
             { key: "keywords", sortable: true }, 
             { key: "other", sortable: true }
             ],
-        perPage: 7,
+        perPage: 20,
         currentPage: 1,
         sortDesc: false,
         sortBy: 'date',
@@ -122,12 +125,10 @@
         flags_dict,
         flagProps: { width: 20, height: 20, class: 'm1' },
         groupByIsActive: false,
-
+        sourceURL: 'bitcoin-resources.csv'
       };
     },
     mounted() {
-      // Set the initial number of items
-      this.totalRows = this.resources.length
     },
     computed: {
       groupByButtonText(){
@@ -135,17 +136,44 @@
       }
     },
     methods: {
+      // returns an array with different elements from a comma separated string
+      splitToArray(str){
+        return str.split(",").map((item)=>item.trim());
+      },
       onFiltered(filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
         this.currentPage = 1
       },
       groupBy(){
-
         // TODO 
         // all the logic to group and ungroup the rows goes here
         this.groupByIsActive = !this.groupByIsActive;
-      }
-    }
+      },
+      itemsProvider(ctx){
+        this.$papa.parsePromise = function(file, thisObject) {
+          return new Promise(function(complete, error) {
+            thisObject.$papa.parse(file, {
+                  header: true,
+                  download: true,
+                  delimiter: ",",
+                  quoteChar: '"',
+                  escapeChar: '"',
+                  complete,
+                  error,
+            });
+          });
+        };
+        return this.$papa.parsePromise(this.sourceURL, this).
+          then(results => {
+            const items = results.data
+            this.totalRows = items.length
+            console.log(items)
+            items.map((item) => item.keywords = this.splitToArray(item.keywords))
+            items.map((item) => item.author = this.splitToArray(item.author))
+            return items || []
+          })  
+      },
+    },
   }
 </script>
