@@ -62,7 +62,7 @@
       <b-row>
         <b-col>
           <!-- <resources-table :resources="resources.items" :sourceURL="resources.sourceURL"></resources-table> -->
-          <resources-table :resources="resources" :sourceURL="sourceURL"></resources-table>
+          <resources-table></resources-table>
         </b-col>
       </b-row>
       <div class="mt-5"></div>
@@ -85,41 +85,9 @@
     },
     data() {
       return {
-        resources: [],
-        sourceURL: 'bitcoin-resources.csv'
       };
     },
-    mounted() {
-      this.readResources();
-    },
     methods: {
-      readResources(){
-        var res = []
-        this.$papa.parse(this.sourceURL, {
-              header: true,
-              download: true,
-              delimiter: ",",
-              quoteChar: '"',
-	            escapeChar: '"',
-              complete: function (results) {
-                  this.resources = results.data
-                  console.log(this.resources);
-              }
-          });
-        // return [{
-        //     id: '1', 
-        //     date: '2021-05',
-        //     title: 'aThe bullish case for Bitcoin',
-        //     type: 'article',
-        //     link: 'https://testlink.com/bullish-case',
-        //     language: 'es',
-        //     author: 'Vijay',
-        //     keywords: ['bullish', 'case', 'bitcoin'],
-        //     description: 'odo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut met',
-        //     other: {}
-        //   }
-        // ]
-      }
     }
   };
 </script>
