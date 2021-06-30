@@ -1,12 +1,5 @@
 <template>
-
-    <b-card no-body v-if="isBusy">
-        <div class="text-center text-danger my-2">
-          <b-spinner class="align-middle"></b-spinner>
-          <strong>Loading...</strong>
-        </div>
-    </b-card>
-    <b-card no-body v-else>
+    <b-card no-body>
         <b-card-header class="border-0">
         <b-row>
             <b-col>
@@ -39,7 +32,7 @@
         
         <b-table 
           hover 
-          :items="resources"
+          :items="itemsProvider" 
           :per-page="perPage" 
           :current-page="currentPage"
           :fields="fields"
@@ -106,13 +99,10 @@
         flags_dict,
         flagProps: { width: 20, height: 20, class: 'm1' },
         groupByIsActive: false,
-        sourceURL: 'bitcoin-resources.csv',
-        isBusy: true, 
-        resources: [],
+        sourceURL: 'bitcoin-resources.csv'
       };
     },
     mounted() {
-      this.loadResources();
     },
     computed: {
       groupByButtonText(){
@@ -134,8 +124,8 @@
         // all the logic to group and ungroup the rows goes here
         this.groupByIsActive = !this.groupByIsActive;
       },
-      loadResources(){
-        this.$papa.parsePromise = function(file, thisObject) {
+      itemsProvider(ctx){
+        this.$papa.parsePromise = function(file, thisObject, ctx) {
           return new Promise(function(complete, error) {
             thisObject.$papa.parse(file, {
                   header: true,
@@ -148,15 +138,13 @@
             });
           });
         };
-        return this.$papa.parsePromise(this.sourceURL, this).
+        return this.$papa.parsePromise(this.sourceURL, this, ctx).
           then(results => {
             const items = results.data
             this.totalRows = items.length
             items.map((item) => item.keywords = this.splitToArray(item.keywords))
             items.map((item) => item.author = this.splitToArray(item.author))
-            this.isBusy = false;
-            this.resources = items
-            // return items || []
+            return items || []
           })  
       },
     },
