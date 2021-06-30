@@ -8,7 +8,7 @@
     </b-card>
     <b-card no-body v-else>
         <b-card-header class="border-0">
-        <b-row>
+          <b-row>
             <b-col>
                 <b-form-input v-model="filter" type="search" id="filterInput" placeholder="Search..."></b-form-input>
             </b-col>
@@ -29,12 +29,8 @@
                   >
                     {{groupByButtonText}}
                 </b-button>
-
-                
             </b-col>
-        </b-row>
-
-
+          </b-row>
         </b-card-header>
         
         <b-table 

@@ -61,8 +61,8 @@
     <b-container fluid class="mt--7">
       <b-row>
         <b-col>
-          <resources-table :resources="resources" :sourceURL="sourceURL" :isBusy="isBusy" :totalRows="totalRows"></resources-table>
-          <!-- <resources-table></resources-table> -->
+          <!-- <resources-table :resources="resources" :sourceURL="sourceURL" :isBusy="isBusy" :totalRows="totalRows"></resources-table> -->
+          <resources-vue-good-table :resources="resources" :sourceURL="sourceURL" :isBusy="isBusy" :totalRows="totalRows"></resources-vue-good-table>
         </b-col>
       </b-row>
       <div class="mt-5"></div>
@@ -71,12 +71,14 @@
 </template>
 <script>
   import { Dropdown, DropdownItem, DropdownMenu, Table, TableColumn } from 'element-ui';
-  import ResourcesTable from "./Tables/RegularTables/ResourcesTable";
+  // import ResourcesTable from "./Tables/RegularTables/ResourcesTable";
+  import ResourcesVueGoodTable from "./Tables/RegularTables/ResourcesVueGoodTable";
   
 
   export default {
     components: {
-      ResourcesTable,
+      // ResourcesTable,
+      ResourcesVueGoodTable,
       [Dropdown.name]: Dropdown,
       [DropdownItem.name]: DropdownItem,
       [DropdownMenu.name]: DropdownMenu,
@@ -133,7 +135,7 @@
 
             this.countArticles = this.countRowsByType('article');
             this.countBooks = this.countRowsByType('book');
-            this.countAudios = this.countRowsByType('podcast');
+            this.countAudios = this.countRowsByType('podcast') + this.countRowsByType('audio');
             this.countVideos = this.countRowsByType('video');
             // return items || []
           })  
