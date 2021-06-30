@@ -81,6 +81,7 @@
   import flags_dict from '@/assets/language-flags-mapping.js'
   export default {
     name: 'resources-table',
+    props: ['resources','sourceURL','isBusy','totalRows'],
     components: {
       [Table.name]: Table,
       [TableColumn.name]: TableColumn
@@ -102,17 +103,12 @@
         currentPage: 1,
         sortDesc: false,
         sortBy: 'date',
-        totalRows: 1,
         flags_dict,
         flagProps: { width: 20, height: 20, class: 'm1' },
         groupByIsActive: false,
-        sourceURL: 'bitcoin-resources.csv',
-        isBusy: true, 
-        resources: [],
       };
     },
     mounted() {
-      this.loadResources();
     },
     computed: {
       groupByButtonText(){
@@ -120,10 +116,6 @@
       }
     },
     methods: {
-      // returns an array with different elements from a comma separated string
-      splitToArray(str){
-        return str.split(",").map((item)=>item.trim());
-      },
       onFiltered(filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
@@ -133,31 +125,6 @@
         // TODO 
         // all the logic to group and ungroup the rows goes here
         this.groupByIsActive = !this.groupByIsActive;
-      },
-      loadResources(){
-        this.$papa.parsePromise = function(file, thisObject) {
-          return new Promise(function(complete, error) {
-            thisObject.$papa.parse(file, {
-                  header: true,
-                  download: true,
-                  delimiter: ",",
-                  quoteChar: '"',
-                  escapeChar: '"',
-                  complete,
-                  error,
-            });
-          });
-        };
-        return this.$papa.parsePromise(this.sourceURL, this).
-          then(results => {
-            const items = results.data
-            this.totalRows = items.length
-            items.map((item) => item.keywords = this.splitToArray(item.keywords))
-            items.map((item) => item.author = this.splitToArray(item.author))
-            this.isBusy = false;
-            this.resources = items
-            // return items || []
-          })  
       },
     },
   }
