@@ -6,39 +6,39 @@
         <b-col xl="3" md="6">
           <stats-card title="Articles"
                       type="gradient-red"
-                      sub-title="350,897"
-                      icon="ni ni-active-40"
+                      :sub-title="countArticles.toString()"
+                      icon="ni ni-single-copy-04"
                       class="mb-4">
 
             <template slot="footer">
-              <span class="text-success mr-2">3.48%</span>
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-success mr-2">{{ percentageOfTotal(countArticles)}} %</span>
+              <span class="text-nowrap">of {{totalRows}} resources</span>
             </template>
           </stats-card>
         </b-col>
         <b-col xl="3" md="6">
           <stats-card title="Books"
                       type="gradient-orange"
-                      sub-title="2,356"
-                      icon="ni ni-chart-pie-35"
+                      :sub-title="countBooks.toString()"
+                      icon="ni ni-books"
                       class="mb-4">
 
             <template slot="footer">
-              <span class="text-success mr-2">12.18%</span>
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-success mr-2">{{ percentageOfTotal(countBooks)}} %</span>
+              <span class="text-nowrap">of {{totalRows}} resources</span>
             </template>
           </stats-card>
         </b-col>
         <b-col xl="3" md="6">
           <stats-card title="Audios"
                       type="gradient-green"
-                      sub-title="924"
-                      icon="ni ni-money-coins"
+                      :sub-title="countAudios.toString()"
+                      icon="ni ni-headphones"
                       class="mb-4">
 
             <template slot="footer">
-              <span class="text-danger mr-2">5.72%</span>
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-success mr-2">{{ percentageOfTotal(countAudios)}} %</span>
+              <span class="text-nowrap">of {{totalRows}} resources</span>
             </template>
           </stats-card>
 
@@ -46,13 +46,13 @@
         <b-col xl="3" md="6">
           <stats-card title="Videos"
                       type="gradient-info"
-                      sub-title="49,65%"
-                      icon="ni ni-chart-bar-32"
+                      :sub-title="countVideos.toString()"
+                      icon="ni ni-tv-2"
                       class="mb-4">
 
             <template slot="footer">
-              <span class="text-success mr-2">54.8%</span>
-              <span class="text-nowrap">Since last month</span>
+              <span class="text-success mr-2">{{ percentageOfTotal(countVideos)}} %</span>
+              <span class="text-nowrap">of {{totalRows}} resources</span>
             </template>
           </stats-card>
         </b-col>
@@ -61,8 +61,8 @@
     <b-container fluid class="mt--7">
       <b-row>
         <b-col>
-          <!-- <resources-table :resources="resources.items" :sourceURL="resources.sourceURL"></resources-table> -->
-          <resources-table></resources-table>
+          <resources-table :resources="resources" :sourceURL="sourceURL" :isBusy="isBusy" :totalRows="totalRows"></resources-table>
+          <!-- <resources-table></resources-table> -->
         </b-col>
       </b-row>
       <div class="mt-5"></div>
@@ -85,9 +85,62 @@
     },
     data() {
       return {
+        sourceURL: 'bitcoin-resources.csv',
+        isBusy: true, 
+        resources: [],
+        totalRows: 1,
+        countArticles: 0,
+        countBooks: 0,
+        countAudios: 0,
+        countVideos: 0,
       };
     },
+    mounted() {
+      this.loadResources();
+    },
     methods: {
+      countRowsByType(t){
+        return this.resources.filter(function(item){
+          return item.type.includes(t);
+        }).length;
+      },
+      // returns an array with different elements from a comma separated string
+      splitToArray(str){
+        return str.split(",").map((item)=>item.trim());
+      },
+      loadResources(){
+        this.$papa.parsePromise = function(file, thisObject) {
+          return new Promise(function(complete, error) {
+            thisObject.$papa.parse(file, {
+                  header: true,
+                  download: true,
+                  delimiter: ",",
+                  quoteChar: '"',
+                  escapeChar: '"',
+                  complete,
+                  error,
+            });
+          });
+        };
+        return this.$papa.parsePromise(this.sourceURL, this).
+          then(results => {
+            const items = results.data
+            items.map((item) => item.keywords = this.splitToArray(item.keywords))
+            items.map((item) => item.author = this.splitToArray(item.author))
+            this.isBusy = false;
+            this.resources = items
+            this.totalRows = items.length
+
+            this.countArticles = this.countRowsByType('article');
+            this.countBooks = this.countRowsByType('book');
+            this.countAudios = this.countRowsByType('podcast');
+            this.countVideos = this.countRowsByType('video');
+            // return items || []
+          })  
+      },
+      percentageOfTotal(countResource){
+        return ((countResource / this.totalRows) * 100).toFixed(1)
+      }
     }
   };
 </script>
