@@ -43,6 +43,7 @@ One of the following values:
 - ```course```
 - ```tool```
 - ```collection``` : This refers to a place that collects a variety of links to resources, which can be of many sorts (articles, books, videos, etc.).
+- ```guide``` : Any resource whose goal is to guide you through some process, such as setting up your node, creating a wallet, etc. 
 - ```other```
 
 ### link
