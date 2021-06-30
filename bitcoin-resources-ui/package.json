@@ -31,6 +31,7 @@
     "vue-chartjs": "^3.5.0",
     "vue-clipboard2": "^0.3.0",
     "vue-flatpickr-component": "^8.1.2",
+    "vue-good-table": "^2.21.10",
     "vue-papa-parse": "^2.0.0",
     "vue-router": "^3.0.6",
     "vue2-transitions": "^0.2.3"

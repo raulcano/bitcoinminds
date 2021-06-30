@@ -16,15 +16,18 @@
 */
 import Vue from 'vue';
 import VuePapaParse from 'vue-papa-parse'
+import VueGoodTablePlugin from 'vue-good-table';
 import DashboardPlugin from './plugins/dashboard-plugin';
 import App from './App.vue';
 
-
+// import the styles
+import 'vue-good-table/dist/vue-good-table.css'
 // router setup
 import router from './routes/router';
 // plugin setup
 Vue.use(DashboardPlugin);
 Vue.use(VuePapaParse);
+Vue.use(VueGoodTablePlugin);
 
 /* eslint-disable no-new */
 new Vue({
@@ -32,3 +35,12 @@ new Vue({
   render: h => h(App),
   router
 });
+
+
+
+
+
+
+
+
+
