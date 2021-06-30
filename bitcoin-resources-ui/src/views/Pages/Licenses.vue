@@ -62,7 +62,7 @@
       <b-row>
         <b-col>
           <b-card>
-            This platform runs on the free template "BootstrapVue Argon" by <b-link href="https://www.creative-tim.com/">Creative Tim</b-link> which is licensed under the <b-link href="https://github.com/timcreative/freebies/blob/master/LICENSE.md">MIT license</b-link>. Thanks a lot, Tim!
+            This platform runs on the free template <b-link href="https://www.creative-tim.com/product/bootstrap-vue-argon-dashboard" target="_blank">"BootstrapVue Argon dashboard"</b-link> by <b-link href="https://www.creative-tim.com/">Creative Tim</b-link> which is licensed under the <b-link href="https://github.com/timcreative/freebies/blob/master/LICENSE.md">MIT license</b-link>. Thanks a lot, Tim!
           </b-card>
         </b-col>
       </b-row>
