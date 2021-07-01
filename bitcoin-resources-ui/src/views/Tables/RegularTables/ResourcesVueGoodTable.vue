@@ -163,7 +163,19 @@
             tdClass: 'text-center align-middle',
             filterOptions: {
               enabled: true,
-              placeholder: 'Filter by type',
+              placeholder: 'Select ...',
+              filterDropdownItems: [  
+                { value: 'article', text: 'Articles' },  
+                { value: 'audio', text: 'Audios' },  
+                { value: 'book', text: 'Books' },  
+                { value: 'collection', text: 'Collections' },  
+                { value: 'course', text: 'Courses' },  
+                { value: 'guide', text: 'Guides' },  
+                { value: 'podcast', text: 'Podcasts' },  
+                { value: 'tool', text: 'Tools' },  
+                { value: 'video', text: 'Videos' },  
+                { value: 'other', text: 'Other' },  
+              ],
             },
           },
           {
@@ -172,7 +184,7 @@
             tdClass: 'text-center align-middle',
             filterOptions: {
               enabled: true, 
-              placeholder: 'Select one',
+              placeholder: 'Select ...',
               filterDropdownItems: [  
                 { value: 'en', text: 'English' },  
                 { value: 'es', text: 'Español' },  
