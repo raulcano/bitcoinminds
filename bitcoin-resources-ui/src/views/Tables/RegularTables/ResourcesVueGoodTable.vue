@@ -95,7 +95,9 @@
                         <b-link :href="props.row.link" target="_blank">{{props.row.title}}</b-link>
                       </span>
                       <span v-else-if="props.column.field == 'type'">
-                        <b-button pill variant="primary" size="sm"
+                        <b-button pill 
+                        :variant="getTypeVariant(props.row.type)"
+                        size="sm"
                         :title="'Click here to group the rows by ' + props.column.field"
                         @click="groupBy(props.column.field,props.row.type)"
                         >{{props.row.type}}</b-button>
@@ -140,6 +142,7 @@
 </template>
 <script>
   import flags_dict from '@/assets/language-flags-mapping.js'
+  import types from '@/assets/types.js'
   export default {
     name: 'resources-vue-good-table',
     props: ['resources','sourceURL','isBusy','totalRows'],
@@ -147,7 +150,6 @@
     },
     data() {
       return {
-
         columns: [
           {
             label: 'Date',
@@ -173,18 +175,7 @@
             filterOptions: {
               enabled: true,
               placeholder: 'Select ...',
-              filterDropdownItems: [  
-                { value: 'article', text: 'Articles' },  
-                { value: 'audio', text: 'Audios' },  
-                { value: 'book', text: 'Books' },  
-                { value: 'collection', text: 'Collections' },  
-                { value: 'course', text: 'Courses' },  
-                { value: 'guide', text: 'Guides' },  
-                { value: 'podcast', text: 'Podcasts' },  
-                { value: 'tool', text: 'Tools' },  
-                { value: 'video', text: 'Videos' },  
-                { value: 'other', text: 'Other' },  
-              ],
+              filterDropdownItems: types,
             },
           },
           {
@@ -239,6 +230,11 @@
       }
     },
     methods: {
+      getTypeVariant(value){
+        return types.filter((function(type){
+                            return type.value === value; 
+                        }))[0].variant
+      },
       onFiltered(filteredItems) {
         // Trigger pagination to update the number of buttons/pages due to filtering
         this.totalRows = filteredItems.length
