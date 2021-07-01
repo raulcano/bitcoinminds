@@ -35,6 +35,9 @@
                 <hr class="my-3">
                 <!--Heading-->
                 <h6 class="navbar-heading text-muted">About</h6>
+                <p class="text-muted about-text">
+                  This is a website for anyone interested in Bitcoin. By presenting a curated a list of relevant "food for thought", I hope that this will be useful for anyone going down the rabbit hole.
+                </p>
                 <!--Navigation-->
                 <ul class="navbar-nav mb-md-3">
                     <li class="nav-item">
@@ -112,3 +115,8 @@
     }
   };
 </script>
+<style scoped>
+.about-text{
+  font-size: 13px;
+}
+</style>

@@ -4,37 +4,12 @@
     <side-bar>
       <template slot="links">
         <sidebar-item
-          :link="{
-            name: 'Dashboard',
-            path: '/dashboard',
-            icon: 'ni ni-tv-2 text-primary',
-          }"
-        >
-        </sidebar-item>
-        <sidebar-item
                 :link="{
-                  name: 'Resources',
+                  name: 'Bitcoin resources',
                   path: '/resources',
-                  icon: 'ni ni-bullet-list-67 text-red'
+                  icon: 'ni ni-tv-2 text-primary',
                 }">
         </sidebar-item>
-        <sidebar-item
-                :link="{
-                  name: 'Licenses',
-                  path: '/licenses',
-                  icon: 'ni ni-tag text-red'
-                }">
-        </sidebar-item>
-        <sidebar-item
-            :link="{
-              name: 'Icons',
-              path: '/icons',
-              icon: 'ni ni-planet text-blue'
-              }"
-            >
-        </sidebar-item>
-
-
       </template>
 
       <template slot="links-after">
