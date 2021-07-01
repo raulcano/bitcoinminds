@@ -90,6 +90,7 @@
                       </span>
                       <span v-else-if="props.column.field == 'type'">
                         <b-button pill variant="primary" size="sm"
+                        :title="'Click here to group the rows by ' + props.column.field"
                         @click="groupBy(props.column.field,props.row.type)"
                         >{{props.row.type}}</b-button>
                       </span>
@@ -98,11 +99,13 @@
                       </span>
                       <span v-else-if="props.column.field == 'author'">
                         <b-button pill variant="secondary" size="sm" class="mt-1" v-for="author in props.row.author" :key="author"
+                        :title="'Click here to group the rows by ' + props.column.field"
                         @click="groupBy(props.column.field,props.row.author)"
                         >{{author}}</b-button>
                       </span>
                       <span v-else-if="props.column.field == 'keywords'">
                         <b-button pill variant="secondary" size="sm" class="mt-1" v-for="k in props.row.keywords" :key="k"
+                        :title="'Click here to group the rows by ' + props.column.field"
                         @click="groupBy(props.column.field,k)">{{k}}</b-button>
                       </span>
                       <span v-else>
@@ -144,14 +147,14 @@
             label: 'Date',
             field: 'date',
             type: 'date',
-            tdClass: 'text-sm align-middle',
+            tdClass: 'align-middle date-cell',
             dateInputFormat: 'yyyy-MM-dd',
             dateOutputFormat: 'MMM do yy',
           },
           {
             label: 'Title',
             field: 'title',
-            tdClass: 'text-sm align-middle',
+            tdClass: 'text-sm align-middle title-cell',
             filterOptions: {
               enabled: true,
               placeholder: 'Filter by title',
@@ -287,3 +290,12 @@
     },
   }
 </script>
+<style scoped>
+td.date-cell span{
+  font-size: 10px;
+}
+
+td.title-cell span{
+  font-size: 13px;
+}
+</style>
