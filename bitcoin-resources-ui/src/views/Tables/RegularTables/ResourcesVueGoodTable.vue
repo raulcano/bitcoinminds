@@ -201,7 +201,7 @@
             },
           },
           {
-            label: 'Author',
+            label: 'Author(s)',
             field: 'author',
             tdClass: 'align-middle',
             filterOptions: {
@@ -210,7 +210,7 @@
             },
           },
           {
-            label: 'Keywords',
+            label: 'Keyword(s)',
             field: 'keywords',
             // tooltip: 'A simple tooltip',
             tdClass: 'align-middle',
@@ -274,7 +274,7 @@
 
             group = {
                 mode: 'span',
-                label: uniqueValue,
+                label: uniqueValue === "" ? '<< no ' + field + ' found >>' : uniqueValue,
                 html: false, // if this is true, label will be rendered as html
                 children: children,
               }
