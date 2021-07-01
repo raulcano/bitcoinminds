@@ -29,6 +29,12 @@
                         @click="ungroup()"
                         >Clear row groups</b-button>
 
+                      <a
+                        :href="sourceURL"
+                        class="mt-1 mb-1 mr-2 btn btn-success"
+                        title="Download the CSV file with all the data in this table"
+                        >DOWNLOAD</a>
+
                       <b-button
                         class="mt-1 mb-1 mr-2"
                         variant='outline-info'

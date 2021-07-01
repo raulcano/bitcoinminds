@@ -39,14 +39,14 @@
 
       <template slot="links-after">
         <hr class="my-3">
-        <h6 class="navbar-heading p-0 text-muted">Documentation</h6>
+        <h6 class="navbar-heading p-0 text-muted">Contact me</h6>
 
         <b-nav class="navbar-nav mb-md-3">
           <b-nav-item
-               href="https://www.creative-tim.com/learning-lab/bootstrap-vue/quick-start/argon-dashboard"
+               href="https://twitter.com/raul__cano"
                >
               <i class="ni ni-spaceship"></i>
-              <b-nav-text class="p-0">Getting started</b-nav-text>
+              <b-nav-text class="p-0">Twitter @raul__cano</b-nav-text>
           </b-nav-item>
         </b-nav>
       </template>
