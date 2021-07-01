@@ -14,26 +14,96 @@
             <b-col>
               <div>
                 <vue-good-table
+                  ref="resourcesTable"
                   :columns="columns"
-                  :rows="resources"
+                  :rows="isGroupedBy ? resourcesGrouped : resources"
                   styleClass="vgt-table condensed"
+                  :group-options="isGroupedBy ? {enabled: true, collapsable: true} : {enabled: false}"
                    >
+                    <div slot="table-actions">
+                      <b-button
+                        class="mt-1 mb-1 mr-2"
+                        variant='outline-danger'
+                        :hidden="isGroupedBy ? false : true"
+                        title="Removes the grouping of rows and returns the table to its original state"
+                        @click="ungroup()"
+                        >Clear row groups</b-button>
+
+                      <b-button
+                        class="mt-1 mb-1 mr-2"
+                        variant='outline-info'
+                        title="Group the rows by type"
+                        @click="groupBy('type')"
+                        >Group by type</b-button>
+                    
+                      <b-button
+                        class="mt-1 mb-1 mr-2"
+                        variant='outline-info'
+                        title="Group the rows by authors"
+                        @click="groupBy('author')"
+                        >Group by authors</b-button>
+                        
+                      <b-button
+                        class="mt-1 mb-1 mr-2"
+                        variant='outline-info'
+                        title="Group the rows by keywords"
+                        @click="groupBy('keywords')"
+                        >Group by keywords</b-button>
+
+                      
+
+
+
+                        <b-button
+                        class="mt-1 mb-1 mr-2"
+                        :disabled="isGroupedBy ? false : true"
+                        :title="isGroupedBy ? null : 'Group the table by clicking on any of the available tags (type, author, keywords)'"
+                        @click="$refs.resourcesTable.expandAll()"
+                        >Expand all</b-button>
+
+                        <b-button
+                        class="mt-1 mb-1 mr-2"
+                        :disabled="isGroupedBy ? false : true"
+                        :title="isGroupedBy ? null : 'Group the table by clicking on any of the available tags (type, author, keywords)'"
+                        @click="$refs.resourcesTable.collapseAll()"
+                        >Collapse all</b-button>
+
+
+                      </div>
+
+                    <template slot="table-header-row" slot-scope="props">
+                      <span class="ml-3 float-left">
+                        {{ props.row.label }}
+                      </span>
+                      
+                      <b-button variant="outline-secondary" class="ml-3 float-right"
+                      title="Removes the grouping of rows and returns the table to its original state"
+                      @click="ungroup()">
+                      <i class="ni ni-fat-remove"/>Clear</b-button>
+                       
+                    </template>
+
 
                     <template slot="table-row" slot-scope="props">
                       <span v-if="props.column.field == 'title'">
                         <b-link :href="props.row.link" target="_blank">{{props.row.title}}</b-link>
                       </span>
                       <span v-else-if="props.column.field == 'type'">
-                        <b-button pill variant="primary" size="sm">{{props.row.type}}</b-button>
+                        <b-button pill variant="primary" size="sm"
+                        @click="groupBy(props.column.field,props.row.type)"
+                        >{{props.row.type}}</b-button>
                       </span>
                       <span v-else-if="props.column.field == 'language'">
                         <b-img fluid v-bind="flagProps" :src="'/img/flags/' + flags_dict[props.row.language]" :alt="props.row.language" :title="props.row.language"></b-img>
                       </span>
                       <span v-else-if="props.column.field == 'author'">
-                        <b-button pill variant="secondary" size="sm" class="mt-1" v-for="author in props.row.author" :key="author">{{author}}</b-button>
+                        <b-button pill variant="secondary" size="sm" class="mt-1" v-for="author in props.row.author" :key="author"
+                        @click="groupBy(props.column.field,props.row.author)"
+                        >{{author}}</b-button>
                       </span>
                       <span v-else-if="props.column.field == 'keywords'">
-                        <b-button pill variant="secondary" size="sm" class="mt-1" v-for="k in props.row.keywords" :key="k">{{k}}</b-button>
+                        <b-button pill variant="secondary" size="sm" class="mt-1" v-for="k in props.row.keywords" :key="k"
+                        @click="groupBy(props.column.field,k)">{{k}}</b-button>
                       </span>
                       <span v-else>
                         {{props.formattedRow[props.column.field]}}
@@ -135,14 +205,16 @@
         ],
         flags_dict,
         flagProps: { width: 20, height: 20, class: 'm1' },
-        groupByIsActive: false,
+        isGroupedBy: false,
+        resourcesGrouped: [],
+        currentGrouping: { field: null, value: null}
       };
     },
     mounted() {
     },
     computed: {
       groupByButtonText(){
-        return (this.groupByIsActive === true) ? 'Ungroup rows' : 'Group rows by keyword';
+        return (this.isGroupedBy === true) ? 'Ungroup rows' : 'Group rows by keyword';
       }
     },
     methods: {
@@ -151,10 +223,54 @@
         this.totalRows = filteredItems.length
         this.currentPage = 1
       },
-      groupBy(){
-        // TODO 
+      groupBy(field, value = null){
         // all the logic to group and ungroup the rows goes here
-        this.groupByIsActive = !this.groupByIsActive;
+        if(
+          this.isGroupedBy &&
+          field == this.currentGrouping.field
+        ){
+          // Do nothing
+        }else{
+          // Get a list of the unique values in the field to group by 
+          var uniqueValues = []
+          if (this.resources.length > 0){
+            if (this.resources[0][field] instanceof Array){
+              var tempArray = []
+              this.resources.map(item => tempArray.push(...item[field]))
+              uniqueValues = [...new Set(tempArray)]
+            }else{
+              uniqueValues = [...new Set(this.resources.map(item => item[field]))];
+            }
+          }
+
+          // For each value, add the corresponding object in the arrays of grouped rows
+          this.resourcesGrouped = []
+          var group = {}
+          uniqueValues.forEach((uniqueValue, index) => {
+            let children  = this.resources.filter(function(item){
+                      return item[field].includes(uniqueValue); 
+                    });
+
+            group = {
+                mode: 'span',
+                label: uniqueValue,
+                html: false, // if this is true, label will be rendered as html
+                children: children,
+              }
+            // Make the selected value by the user the first in the array of grouped rows
+            if (value instanceof Array) {
+              value.includes(uniqueValue) ? this.resourcesGrouped.unshift(group) : this.resourcesGrouped.push(group)
+            }else{
+              uniqueValue === value ? this.resourcesGrouped.unshift(group) : this.resourcesGrouped.push(group)
+            }
+          });
+          this.currentGrouping.field = field
+          this.currentGrouping.value = value
+        }
+        this.isGroupedBy = true;
+      },
+      ungroup(){
+        this.isGroupedBy = false;
       },
     },
   }
