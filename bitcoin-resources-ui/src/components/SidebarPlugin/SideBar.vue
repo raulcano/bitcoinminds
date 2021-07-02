@@ -38,6 +38,8 @@
                 <p class="text-muted about-text">
                   This is a website for anyone interested in Bitcoin. By presenting a curated a list of relevant "food for thought", I hope that this will be useful for anyone going down the rabbit hole.
                 </p>
+                
+                
                 <!--Navigation-->
                 <ul class="navbar-nav mb-md-3">
                     <li class="nav-item">
@@ -77,6 +79,14 @@
 </template>
 <script>
   import NavbarToggleButton from '@/components/NavbarToggleButton'
+  import { library } from '@fortawesome/fontawesome-svg-core'
+  
+  // import { faFontAwesome } from '@fortawesome/free-brands-svg-icons'
+  // library.add(faFontAwesome)
+  
+  import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+  library.add(faUserSecret)
+  
 
   export default {
     name: 'sidebar',

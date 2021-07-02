@@ -9,6 +9,11 @@
     "dev": "npm run serve"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
     "bootstrap": "4.3.1",
     "bootstrap-vue": "^2.5.0",
     "chart.js": "^2.9.3",
