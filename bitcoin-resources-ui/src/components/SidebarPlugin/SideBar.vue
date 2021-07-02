@@ -38,6 +38,8 @@
                 <p class="text-muted about-text">
                   This is a website for anyone interested in Bitcoin. By presenting a curated a list of relevant "food for thought", I hope that this will be useful for anyone going down the rabbit hole.
                 </p>
+                
+                
                 <!--Navigation-->
                 <ul class="navbar-nav mb-md-3">
                     <li class="nav-item">
@@ -66,6 +68,7 @@
                     <li class="nav-item">
                         <a class="nav-link"
                            href="#"
+                           v-b-modal.my-modal
                            >
                             <i class="ni ni-satisfied"></i> Buy me a beer?
                         </a>
@@ -73,7 +76,40 @@
                 </ul>
             </div>
             </div>
+          <b-modal id="my-modal" class="text-center">
+
+            <template #modal-header="{}">
+              <div class="text-sm text-center">
+              There is quite some effort and a bit of money invested in keeping the website up and running.
+              If you are happy with the results and want to make a small donation, I'll appreciate it enormously!
+              </div>
+            </template>
+
+            <template #default="{  }">
+              <div class="text-center">
+              <img class="mb-2" src="/img/donationsQR.png" alt="bc1q57ssg4awnav5gtlg6z4vhpfek4dlghan950h3y" width="400px">
+              <br>
+              bc1q57ssg4awnav5gtlg6z4vhpfek4dlghan950h3y
+              </div>
+            </template>
+
+            <template #modal-footer="{ }">
+              <b-button size="sm" variant="success" v-b-popover="'Well, then send your sats to the Bitcoin address, thanks!'">
+                Shut up and take my money
+              </b-button>
+              <b-button size="sm" variant="secondary" v-b-popover="'I know...Just need some time :( Alternatively, you could send at TX with very low fees :D :D'">
+                Maybe when you enable Lightning for donations
+              </b-button>
+            </template>
+
+
+
+
+
+
+          </b-modal>
     </nav>
+    
 </template>
 <script>
   import NavbarToggleButton from '@/components/NavbarToggleButton'
