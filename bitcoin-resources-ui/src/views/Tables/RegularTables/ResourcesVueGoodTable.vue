@@ -57,9 +57,6 @@
                         >Group by keywords</b-button>
 
                       
-
-
-
                         <b-button
                         class="mt-1 mb-1 mr-2"
                         :disabled="isGroupedBy ? false : true"
@@ -91,13 +88,24 @@
 
 
                     <template slot="table-row" slot-scope="props">
+
                       <span v-if="props.column.field == 'title'">
                         <b-link :href="props.row.link" target="_blank">{{props.row.title}}</b-link>
                         <br>
-                        <span class="text-light">
-                          {{props.row.description}} 
-                        </span>
+                        <div class="description">
+                          {{props.row.description.substring(0, maxCharsDescription)}}
+                          <span class="readmore" v-if="props.row.description.length > maxCharsDescription">
+                            <span class="readmore-text" v-show="false" :id="'readmore-' + props.row.id">
+                              {{props.row.description.substring(maxCharsDescription, props.row.description.length-1)}}
+                              <span class="text-light show-less" @click="collapseDescription(props.row.id)">&laquo; less</span>
+                            </span>
+
+                            <span class="text-light show-more" @click="expandDescription(props.row.id)" :id="'readless-' + props.row.id">... more &raquo;</span>
+                          </span>
+                        </div>
+                        
                       </span>
+
                       <span v-else-if="props.column.field == 'type'">
                         <b-button pill 
                         :variant="getTypeVariant(props.row.type)"
@@ -176,6 +184,7 @@
             label: 'Type',
             field: 'type',
             tdClass: 'text-center align-middle',
+            tooltip: 'For a description of each type, visit https://github.com/raulcano/bitcoin-resources',
             filterOptions: {
               enabled: true,
               placeholder: 'Select ...',
@@ -223,15 +232,14 @@
         flagProps: { width: 20, height: 20, class: 'm1' },
         isGroupedBy: false,
         resourcesGrouped: [],
-        currentGrouping: { field: null, value: null}
+        currentGrouping: { field: null, value: null},
+        maxCharsDescription: 200,
       };
     },
     mounted() {
+
     },
     computed: {
-      groupByButtonText(){
-        return (this.isGroupedBy === true) ? 'Ungroup rows' : 'Group rows by keyword';
-      }
     },
     methods: {
       getTypeVariant(value){
@@ -274,7 +282,7 @@
 
             group = {
                 mode: 'span',
-                label: uniqueValue === "" ? '<< no ' + field + ' found >>' : uniqueValue,
+                label: uniqueValue === "" ? '<< no ' + field + ' found for these resources >>' : uniqueValue,
                 html: false, // if this is true, label will be rendered as html
                 children: children,
               }
@@ -293,7 +301,15 @@
       ungroup(){
         this.isGroupedBy = false;
       },
-    },
+      expandDescription(id){
+        document.getElementById("readmore-" + id).style.setProperty('display', '')
+        document.getElementById("readless-" + id).style.setProperty('display', 'none')
+      },
+      collapseDescription(id){
+        document.getElementById("readmore-" + id).style.setProperty('display', 'none')
+        document.getElementById("readless-" + id).style.setProperty('display', '')
+      },
+    }
   }
 </script>
 <style scoped>
@@ -303,5 +319,17 @@ td.date-cell span{
 
 td.title-cell span{
   font-size: 13px;
+}
+
+td.title-cell .description{
+  font-size: 13px;
+  color: #ced4da !important;
+}
+
+td.title-cell .description:hover{
+  color: dimgray !important;
+}
+.show-more, .show-less {
+  cursor: pointer;
 }
 </style>
