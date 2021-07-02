@@ -15,6 +15,8 @@
           <b-col>
           <b-card>
             The Bitcoin logo was created by <a href='https://www.freepik.com/free-photos-vectors/business'>by rawpixel.com - www.freepik.com</a>
+            <br>
+            The beer icon was made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
           </b-card>
         </b-col>
       </b-row>

@@ -20,16 +20,6 @@ import VueGoodTablePlugin from 'vue-good-table';
 import DashboardPlugin from './plugins/dashboard-plugin';
 import App from './App.vue';
 
-// FontAwesome icons
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faUserSecret)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-
-//Vue.config.productionTip = false
-
-
 // import the styles
 import 'vue-good-table/dist/vue-good-table.css'
 // router setup
