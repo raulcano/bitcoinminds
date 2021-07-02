@@ -93,6 +93,10 @@
                     <template slot="table-row" slot-scope="props">
                       <span v-if="props.column.field == 'title'">
                         <b-link :href="props.row.link" target="_blank">{{props.row.title}}</b-link>
+                        <br>
+                        <span class="text-light">
+                          {{props.row.description}} 
+                        </span>
                       </span>
                       <span v-else-if="props.column.field == 'type'">
                         <b-button pill 
