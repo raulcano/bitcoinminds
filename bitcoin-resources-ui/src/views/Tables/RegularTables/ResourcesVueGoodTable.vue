@@ -2,14 +2,11 @@
 
     <b-card no-body v-if="isBusy">
         <div class="text-center text-danger my-2">
-          <b-spinner class="align-middle"></b-spinner>
           <strong>Loading...</strong>
         </div>
     </b-card>
     <b-card no-body v-else>
         <b-card-header class="border-0">
-
-
           <b-row>
             <b-col>
               <div>
@@ -28,6 +25,16 @@
                         title="Removes the grouping of rows and returns the table to its original state"
                         @click="ungroup()"
                         >Clear row groups</b-button>
+
+                      <b-button
+                        class="mt-1 mb-1 mr-2"
+                        variant='outline-warning'
+                        title="Checks the status of links"
+                        @click="checkStatusAll()"
+                        >
+                        <span v-if="isLoadingStatus">loading...</span>
+                        <span v-else>Check status of links</span>
+                        </b-button>
 
                       <a
                         :href="sourceURL"
@@ -90,6 +97,12 @@
                     <template slot="table-row" slot-scope="props">
 
                       <span v-if="props.column.field == 'title'">
+                        
+                        <b-badge pill class="mr-1"
+                        :id="'status-' + props.row.id"
+                        style="display: none"
+                        ></b-badge>
+
                         <b-link :href="props.row.link" target="_blank">{{props.row.title}}</b-link>
                         <br>
                         <div class="description">
@@ -153,6 +166,7 @@
     </b-card>
 </template>
 <script>
+  import axios from 'axios'
   import flags_dict from '@/assets/language-flags-mapping.js'
   import types from '@/assets/types.js'
   export default {
@@ -234,6 +248,7 @@
         resourcesGrouped: [],
         currentGrouping: { field: null, value: null},
         maxCharsDescription: 200,
+        isLoadingStatus: false,
       };
     },
     mounted() {
@@ -309,6 +324,46 @@
         document.getElementById("readmore-" + id).style.setProperty('display', 'none')
         document.getElementById("readless-" + id).style.setProperty('display', '')
       },
+ 
+      checkStatusAll(){
+        this.isLoadingStatus = true
+        var promiseArray = new Array() 
+        this.resources.forEach(function(item){
+          var statusClass, statusLinkTooltip, statusText
+          promiseArray.push(
+            axios.get(item.link)
+            .then(function (response) {
+              
+              if(response.status == 200){
+                statusClass = 'badge-success'
+                statusLinkTooltip = 'We reached successfully the URL. It seems working fine'
+                
+              } else {
+                statusClass = 'badge-secondary'
+                statusLinkTooltip = 'The URL returned a status different from OK, please check manually'
+              }
+              statusText = response.statusText
+            })
+            .catch(error => {
+              statusClass = 'badge-info'
+              statusText = '?'
+              statusLinkTooltip = 'Could not reach the source. Please check manually'
+            })
+            .finally(() => {
+              document.getElementById("status-" + item.id).style.setProperty('display', '')
+              document.getElementById("status-" + item.id).setAttribute('title', statusLinkTooltip)
+              document.getElementById("status-" + item.id).innerHTML = statusText
+              document.getElementById("status-" + item.id).classList.add(statusClass)
+            })
+          )
+        })
+        Promise.all(promiseArray).then((values) => {
+          console.log(values);
+          this.isLoadingStatus = false
+        });
+        
+        
+      }
     }
   }
 </script>

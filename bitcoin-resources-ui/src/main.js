@@ -24,6 +24,8 @@ import App from './App.vue';
 import 'vue-good-table/dist/vue-good-table.css'
 // router setup
 import router from './routes/router';
+
+
 // plugin setup
 Vue.use(DashboardPlugin);
 Vue.use(VuePapaParse);
