@@ -81,23 +81,26 @@
             <template #modal-header="{}">
               <div class="text-sm text-center">
               There is quite some effort and a bit of money invested in keeping the website up and running.
-              If you are happy with the results and want to make a small donation, I'll appreciate it enormously!
+              If you are happy with the results and want to make a donation, I'll appreciate it enormously!
               </div>
             </template>
 
             <template #default="{  }">
               <div class="text-center">
-              <img class="mb-2" src="/img/donationsQR.png" alt="bc1q57ssg4awnav5gtlg6z4vhpfek4dlghan950h3y" width="400px">
+              <img class="mb-2" 
+                :src="toggleQRcode ? '/img/donationsQR.png' : '/img/donationsQR_2.png'" 
+                alt="bc1q57ssg4awnav5gtlg6z4vhpfek4dlghan950h3y" width="400px">
               <br>
               bc1q57ssg4awnav5gtlg6z4vhpfek4dlghan950h3y
               </div>
             </template>
 
             <template #modal-footer="{ }">
-              <b-button size="sm" variant="success" v-b-popover="'Well, then send your sats to the Bitcoin address, thanks!'">
+              <b-button size="sm" variant="success" v-b-popover="'Well, then send your sats to the Bitcoin address, thanks!'"
+              @click="toggleQRcode = !toggleQRcode">
                 Shut up and take my money
               </b-button>
-              <b-button size="sm" variant="secondary" v-b-popover="'I know...Just need some time :( Alternatively, you could send at TX with very low fees :D :D'">
+              <b-button size="sm" variant="secondary" v-b-popover="'I know...Just need some time :( Alternatively, you could send at TX with very low fees, I\'m not in a hurry :D :D'">
                 Maybe when you enable Lightning for donations
               </b-button>
             </template>
@@ -118,6 +121,11 @@
     name: 'sidebar',
     components: {
       NavbarToggleButton
+    },
+    data() {
+      return {
+        toggleQRcode: true
+      }
     },
     props: {
       logo: {
@@ -142,7 +150,7 @@
       },
       showSidebar() {
         this.$sidebar.displaySidebar(true)
-      }
+      },
     },
     beforeDestroy() {
       if (this.$sidebar.showSidebar) {
