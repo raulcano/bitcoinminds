@@ -101,6 +101,7 @@
 
                       <span v-if="props.column.field == 'title'">
                         
+                        
                         <b-badge pill class="mr-1"
                         :id="'status-' + props.row.id"
                         style="display: none"

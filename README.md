@@ -4,6 +4,8 @@ The purpose of this repository is to store:
 - A [single CSV](/bitcoin-resources-ui/public/bitcoin-resources.csv) file with a curated collection of resources to study and learn from Bitcoin (e.g. articles, books, podcasts, etc.).
 - The code of a simple Bootstrap Vue interface to load and present the resources from the CSV file.
 
+![Screenshot1](bitcoin-resources-ui/public/img/screenshot1.png)
+
 ## Installing the User Interface
 Go to a folder of your choice and clone this repository:
 ```
