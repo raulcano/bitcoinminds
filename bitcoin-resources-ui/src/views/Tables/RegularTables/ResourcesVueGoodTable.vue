@@ -83,7 +83,10 @@
 
                     <template slot="table-header-row" slot-scope="props">
                       <span class="ml-3 float-left">
-                        {{ props.row.label }}
+                        {{ props.row.label }} 
+                        <span class="text-sm text-light"
+                        :title="'Found ' + props.row.children.length + ' entries in this category that match the filter applied'"
+                        >({{ props.row.children.length }})</span>
                       </span>
                       
                       <b-button variant="outline-secondary" class="ml-3 float-right"
@@ -316,6 +319,7 @@
       ungroup(){
         this.isGroupedBy = false;
       },
+
       expandDescription(id){
         document.getElementById("readmore-" + id).style.setProperty('display', '')
         document.getElementById("readless-" + id).style.setProperty('display', 'none')
