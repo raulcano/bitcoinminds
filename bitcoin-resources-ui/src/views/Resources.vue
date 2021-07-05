@@ -30,28 +30,28 @@
           </stats-card>
         </b-col>
         <b-col xl="3" md="6">
-          <stats-card title="Audios"
+          <stats-card title="Podcasts"
                       type="gradient-green"
-                      :sub-title="countAudios.toString()"
+                      :sub-title="countPodcasts.toString()"
                       icon="ni ni-headphones"
                       class="mb-4">
 
             <template slot="footer">
-              <span class="text-success mr-2">{{ percentageOfTotal(countAudios)}} %</span>
+              <span class="text-success mr-2">{{ percentageOfTotal(countPodcasts)}} %</span>
               <span class="text-nowrap">of {{totalRows}} resources</span>
             </template>
           </stats-card>
 
         </b-col>
         <b-col xl="3" md="6">
-          <stats-card title="Videos"
+          <stats-card title="Video and audio episodes"
                       type="gradient-info"
-                      :sub-title="countVideos.toString()"
+                      :sub-title="(countVideos + countAudios).toString()"
                       icon="ni ni-tv-2"
                       class="mb-4">
 
             <template slot="footer">
-              <span class="text-success mr-2">{{ percentageOfTotal(countVideos)}} %</span>
+              <span class="text-success mr-2">{{ percentageOfTotal(countVideos + countAudios)}} %</span>
               <span class="text-nowrap">of {{totalRows}} resources</span>
             </template>
           </stats-card>
@@ -93,6 +93,7 @@
         totalRows: 1,
         countArticles: 0,
         countBooks: 0,
+        countPodcasts: 0,
         countAudios: 0,
         countVideos: 0,
       };
@@ -135,8 +136,9 @@
 
             this.countArticles = this.countRowsByType('article');
             this.countBooks = this.countRowsByType('book');
-            this.countAudios = this.countRowsByType('podcast') + this.countRowsByType('audio');
+            this.countPodcasts = this.countRowsByType('podcast');
             this.countVideos = this.countRowsByType('video');
+            this.countAudios = this.countRowsByType('audio');
             // return items || []
           })  
       },
