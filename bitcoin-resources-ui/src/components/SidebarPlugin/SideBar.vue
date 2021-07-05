@@ -89,7 +89,7 @@
               <div class="text-center">
               <img class="mb-2" 
                 :src="toggleQRcode ? '/img/donationsQR.png' : '/img/donationsQR_2.png'" 
-                alt="bc1q57ssg4awnav5gtlg6z4vhpfek4dlghan950h3y" width="400px">
+                alt="bc1q57ssg4awnav5gtlg6z4vhpfek4dlghan950h3y" width="300px">
               <br>
               bc1q57ssg4awnav5gtlg6z4vhpfek4dlghan950h3y
               </div>
