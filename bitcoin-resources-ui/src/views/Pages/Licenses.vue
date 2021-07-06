@@ -13,14 +13,37 @@
             img-alt="Image"
             img-top
             tag="article"
-            style="max-width: 40rem;"
+            style="max-width: 100%;"
             class="mb-2 mr-2">
             <b-card-text>
             This platform runs on the free template <b-link href="https://www.creative-tim.com/product/bootstrap-vue-argon-dashboard" target="_blank">"BootstrapVue Argon dashboard"</b-link> by <b-link href="https://www.creative-tim.com/">Creative Tim</b-link> which is licensed under the <b-link href="https://github.com/timcreative/freebies/blob/master/LICENSE.md">MIT license</b-link>.
             </b-card-text>
           </b-card>
         </b-col>
-          <b-col class="col-md-6 col-xl-6">
+        <b-col class="col-md-6 col-xl-6">
+          <b-card
+            title="Much content was collected from existing online sources"
+            sub-title="THANKS A LOT!"
+            img-src="img/water.jpg"
+            img-alt="Image"
+            img-top
+            tag="article"
+            style="max-width: 100%;"
+            class="mb-2 mr-2">
+            <b-card-text>
+            We have collected many resources from collections that other people also shared online, such as 
+            <a href="https://endthefud.org" target="_blank">EndTheFUD</a>, 
+            <a href="https://www.bitcoinerbooks.com" target="_blank">Bitcoiner Books</a>, 
+            <a href="https://bitcoin-resources.com" target="_blank">Bitcoin Resources</a>, 
+            and many others.
+            
+            </b-card-text>
+          </b-card>
+        </b-col>
+          
+      </b-row>
+      <b-row>
+        <b-col class="col-md-12 col-xl-12">
           <b-card
             title="Credits and attributions for the images used in this website"
             sub-title="THANKS TO ALL OF YOU!"
@@ -28,7 +51,7 @@
             img-alt="Image"
             img-top
             tag="article"
-            style="max-width: 40rem;"
+            style="max-width: 100%;"
             class="mb-2 mr-2"
           >
             <b-card-text class="text-sm">
@@ -53,6 +76,7 @@
               Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=984037">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=984037">Pixabay</a><br>
               Image by <a href="https://pixabay.com/users/realworkhard-23566/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=110850">Ralf Kunze</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=110850">Pixabay</a><br>
               Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=768815">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=768815">Pixabay</a><br>
+              Image by <a href="https://pixabay.com/users/drfuenteshernandez-7757554/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4903050">Manuel Darío Fuentes Hernández</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4903050">Pixabay</a><br>
             </b-card-text>
           </b-card>
         </b-col>
