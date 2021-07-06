@@ -26,7 +26,7 @@
                         @click="ungroup()"
                         >Clear row groups</b-button>
 
-                      <b-button
+                      <!-- <b-button
                         class="mt-1 mb-1 mr-2"
                         variant='outline-warning'
                         title="Checks the status of links"
@@ -34,7 +34,7 @@
                         >
                         <span v-if="isLoadingStatus">loading...</span>
                         <span v-else>Check status of links</span>
-                        </b-button>
+                        </b-button> -->
 
                       <a
                         :href="sourceURL"
@@ -100,7 +100,7 @@
                     <template slot="table-row" slot-scope="props">
 
                       <span v-if="props.column.field == 'title'">
-                        
+
                         
                         <b-badge pill class="mr-1"
                         :id="'status-' + props.row.id"
@@ -330,45 +330,43 @@
         document.getElementById("readless-" + id).style.setProperty('display', '')
       },
  
-      checkStatusAll(){
-        this.isLoadingStatus = true
-        var promiseArray = new Array() 
-        this.resources.forEach(function(item){
-          var statusClass, statusLinkTooltip, statusText
-          promiseArray.push(
-            axios.get(item.link)
-            .then(function (response) {
+      // checkStatusAll(){
+      //   this.isLoadingStatus = true
+      //   var promiseArray = new Array() 
+      //   this.resources.forEach(function(item){
+      //     var statusClass, statusLinkTooltip, statusText
+      //     promiseArray.push(
+      //       axios.get(item.link)
+      //       .then(function (response) {
               
-              if(response.status == 200){
-                statusClass = 'badge-success'
-                statusLinkTooltip = 'We reached successfully the URL. It seems working fine'
+      //         if(response.status == 200){
+      //           statusClass = 'badge-success'
+      //           statusLinkTooltip = 'We reached successfully the URL. It seems working fine'
                 
-              } else {
-                statusClass = 'badge-secondary'
-                statusLinkTooltip = 'The URL returned a status different from OK, please check manually'
-              }
-              statusText = response.statusText
-            })
-            .catch(error => {
-              statusClass = 'badge-info'
-              statusText = '?'
-              statusLinkTooltip = 'Could not reach the source. Please check manually'
-            })
-            .finally(() => {
-              document.getElementById("status-" + item.id).style.setProperty('display', '')
-              document.getElementById("status-" + item.id).setAttribute('title', statusLinkTooltip)
-              document.getElementById("status-" + item.id).innerHTML = statusText
-              document.getElementById("status-" + item.id).classList.add(statusClass)
-            })
-          )
-        })
-        Promise.all(promiseArray).then((values) => {
-          console.log(values);
-          this.isLoadingStatus = false
-        });
-        
-        
-      }
+      //         } else {
+      //           statusClass = 'badge-secondary'
+      //           statusLinkTooltip = 'The URL returned a status different from OK, please check manually'
+      //         }
+      //         statusText = response.statusText
+      //       })
+      //       .catch(error => {
+      //         statusClass = 'badge-info'
+      //         statusText = '?'
+      //         statusLinkTooltip = 'Could not reach the source. Please check manually'
+      //       })
+      //       .finally(() => {
+      //         document.getElementById("status-" + item.id).style.setProperty('display', '')
+      //         document.getElementById("status-" + item.id).setAttribute('title', statusLinkTooltip)
+      //         document.getElementById("status-" + item.id).innerHTML = statusText
+      //         document.getElementById("status-" + item.id).classList.add(statusClass)
+      //       })
+      //     )
+      //   })
+      //   Promise.all(promiseArray).then((values) => {
+      //     console.log(values);
+      //     this.isLoadingStatus = false
+      //   });
+      // }
     }
   }
 </script>

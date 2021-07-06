@@ -36,9 +36,9 @@
                 <!--Heading-->
                 <h6 class="navbar-heading text-muted">About</h6>
                 <p class="text-muted about-text">
-                  'Bitcoin Minds' is the most comprehensive list of Bitcoin resources online.
+                  'Bitcoin Minds' is the most comprehensive list of Bitcoin resources online, updated regularly.
                   If you are going down the Bitcoin rabbit hole, you'll probably want to keep close this tool. 
-                  For feedback or anything, feel free to contact me:
+                  Feel free to contact me at:
                 </p>
                 
                 
