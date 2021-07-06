@@ -5,7 +5,14 @@
       <template slot="links">
         <sidebar-item
                 :link="{
-                  name: 'Bitcoin resources',
+                  name: 'Latest',
+                  path: '/latest',
+                  icon: 'ni ni-tag text-red',
+                }">
+        </sidebar-item>
+        <sidebar-item
+                :link="{
+                  name: 'All Bitcoin resources',
                   path: '/resources',
                   icon: 'ni ni-tv-2 text-primary',
                 }">
