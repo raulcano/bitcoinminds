@@ -65,7 +65,7 @@
 
             :title="resource.title"
             :sub-title="'By ' + resource.author.join(',') + ', published on ' + resource.date"
-            img-src="https://picsum.photos/600/300/?image=25"
+            :img-src="resource.image ? '/latest/'+ resource.image : 'https://picsum.photos/600/300/?image=25'"
             img-alt="Image"
             img-top
             tag="article"
@@ -73,7 +73,10 @@
             class="mb-2 mr-2"
           >
             <b-card-text>
-              {{resource.description}}
+              {{resource.description.substring(0, maxCharsDescription)}}
+              <span v-if="resource.description.length > maxCharsDescription">
+              ...
+              </span>
             </b-card-text>
 
             <b-button :href="resource.link" target="_blank" variant="primary">Read more</b-button>
@@ -103,7 +106,8 @@
         countAudios: 0,
         countVideos: 0,
         countLatest: 12,
-        resourcesLatest: []
+        resourcesLatest: [],
+        maxCharsDescription: 100,
       };
     },
     mounted() {
