@@ -36,7 +36,9 @@
                 <!--Heading-->
                 <h6 class="navbar-heading text-muted">About</h6>
                 <p class="text-muted about-text">
-                  This is a website for anyone interested in Bitcoin. By presenting a curated a list of relevant "food for thought", I hope that this will be useful for anyone going down the rabbit hole.
+                  'Bitcoin Minds' is the most comprehensive list of Bitcoin resources online.
+                  If you are going down the Bitcoin rabbit hole, you'll probably want to keep close this tool. 
+                  For feedback or anything, feel free to contact me:
                 </p>
                 
                 
