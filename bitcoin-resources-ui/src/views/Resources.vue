@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-translucent-darker">
       <!-- Card stats -->
@@ -61,7 +62,6 @@
     <b-container fluid class="mt--7">
       <b-row>
         <b-col>
-          <!-- <resources-table :resources="resources" :sourceURL="sourceURL" :isBusy="isBusy" :totalRows="totalRows"></resources-table> -->
           <resources-vue-good-table :resources="resources" :sourceURL="sourceURL" :isBusy="isBusy" :totalRows="totalRows"></resources-vue-good-table>
         </b-col>
       </b-row>
@@ -70,79 +70,21 @@
   </div>
 </template>
 <script>
-  import { Dropdown, DropdownItem, DropdownMenu, Table, TableColumn } from 'element-ui';
-  // import ResourcesTable from "./Tables/RegularTables/ResourcesTable";
   import ResourcesVueGoodTable from "./Tables/RegularTables/ResourcesVueGoodTable";
-  
-
   export default {
+    props: ['resources', 
+    'sourceURL',
+    'isBusy',
+    'totalRows',
+    'countArticles',
+    'countBooks',
+    'countPodcasts',
+    'countAudios',
+    'countVideos'],
     components: {
-      // ResourcesTable,
       ResourcesVueGoodTable,
-      [Dropdown.name]: Dropdown,
-      [DropdownItem.name]: DropdownItem,
-      [DropdownMenu.name]: DropdownMenu,
-      [Table.name]: Table,
-      [TableColumn.name]: TableColumn
-    },
-    data() {
-      return {
-        sourceURL: 'bitcoin-resources.csv',
-        isBusy: true, 
-        resources: [],
-        totalRows: 1,
-        countArticles: 0,
-        countBooks: 0,
-        countPodcasts: 0,
-        countAudios: 0,
-        countVideos: 0,
-      };
-    },
-    mounted() {
-      this.loadResources();
     },
     methods: {
-      countRowsByType(t){
-        return this.resources.filter(function(item){
-          return item.type.includes(t);
-        }).length;
-      },
-      // returns an array with different elements from a comma separated string
-      splitToArray(str){
-        return str.split(",").map((item)=>item.trim());
-      },
-      loadResources(){
-        this.$papa.parsePromise = function(file, thisObject) {
-          return new Promise(function(complete, error) {
-            thisObject.$papa.parse(file, {
-                  header: true,
-                  download: true,
-                  delimiter: ",",
-                  quoteChar: '"',
-                  escapeChar: '"',
-                  skipEmptyLines: true,
-                  complete,
-                  error,
-            });
-          });
-        };
-        return this.$papa.parsePromise(this.sourceURL, this).
-          then(results => {
-            const items = results.data
-            items.map((item) => item.keywords = this.splitToArray(item.keywords))
-            items.map((item) => item.author = this.splitToArray(item.author))
-            this.isBusy = false;
-            this.resources = items
-            this.totalRows = items.length
-
-            this.countArticles = this.countRowsByType('article');
-            this.countBooks = this.countRowsByType('book');
-            this.countPodcasts = this.countRowsByType('podcast');
-            this.countVideos = this.countRowsByType('video');
-            this.countAudios = this.countRowsByType('audio');
-            // return items || []
-          })  
-      },
       percentageOfTotal(countResource){
         return ((countResource / this.totalRows) * 100).toFixed(1)
       }

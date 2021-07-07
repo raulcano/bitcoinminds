@@ -18,68 +18,70 @@
                   :group-options="isGroupedBy ? {enabled: true, collapsable: true} : {enabled: false}"
                    >
                     <div slot="table-actions">
-                      <b-button
-                        class="mt-1 mb-1 mr-2"
-                        variant='outline-danger'
-                        :hidden="isGroupedBy ? false : true"
-                        title="Removes the grouping of rows and returns the table to its original state"
-                        @click="ungroup()"
-                        >Clear row groups</b-button>
+                          <!-- <span class="text-sm mr-2 mt-1">
+                            Showing {{ 'xxx' }} results
+                          </span> -->
 
-                      <!-- <b-button
-                        class="mt-1 mb-1 mr-2"
-                        variant='outline-warning'
-                        title="Checks the status of links"
-                        @click="checkStatusAll()"
-                        >
-                        <span v-if="isLoadingStatus">loading...</span>
-                        <span v-else>Check status of links</span>
-                        </b-button> -->
+                          <b-button
+                          class="mt-1 mb-1 mr-2"
+                          variant='outline-danger'
+                          :hidden="isGroupedBy ? false : true"
+                          title="Removes the grouping of rows and returns the table to its original state"
+                          @click="ungroup()"
+                          >Clear row groups</b-button>
 
-                      <a
-                        :href="sourceURL"
-                        class="mt-1 mb-1 mr-2 btn btn-success"
-                        title="Download the CSV file with all the data in this table"
-                        >DOWNLOAD</a>
-
-                      <b-button
-                        class="mt-1 mb-1 mr-2"
-                        variant='outline-info'
-                        title="Group the rows by type"
-                        @click="groupBy('type')"
-                        >Group by type</b-button>
-                    
-                      <b-button
-                        class="mt-1 mb-1 mr-2"
-                        variant='outline-info'
-                        title="Group the rows by authors"
-                        @click="groupBy('author')"
-                        >Group by authors</b-button>
+                        <!-- <b-button
+                          class="mt-1 mb-1 mr-2"
+                          variant='outline-warning'
+                          title="Checks the status of links"
+                          @click="checkStatusAll()"
+                          >
+                          <span v-if="isLoadingStatus">loading...</span>
+                          <span v-else>Check status of links</span>
+                          </b-button> -->
                         
-                      <b-button
-                        class="mt-1 mb-1 mr-2"
-                        variant='outline-info'
-                        title="Group the rows by keywords"
-                        @click="groupBy('keywords')"
-                        >Group by keywords</b-button>
+                        <a
+                          :href="sourceURL"
+                          class="mt-1 mb-1 mr-2 btn btn-success"
+                          title="Download the CSV file with all the data in this table"
+                          >DOWNLOAD</a>
 
+                        <b-button
+                          class="mt-1 mb-1 mr-2"
+                          variant='outline-info'
+                          title="Group the rows by type"
+                          @click="groupBy('type')"
+                          >Group by type</b-button>
                       
                         <b-button
-                        class="mt-1 mb-1 mr-2"
-                        :disabled="isGroupedBy ? false : true"
-                        :title="isGroupedBy ? null : 'Group the table by clicking on any of the available tags (type, author, keywords)'"
-                        @click="$refs.resourcesTable.expandAll()"
-                        >Expand all</b-button>
-
+                          class="mt-1 mb-1 mr-2"
+                          variant='outline-info'
+                          title="Group the rows by authors"
+                          @click="groupBy('author')"
+                          >Group by authors</b-button>
+                          
                         <b-button
-                        class="mt-1 mb-1 mr-2"
-                        :disabled="isGroupedBy ? false : true"
-                        :title="isGroupedBy ? null : 'Group the table by clicking on any of the available tags (type, author, keywords)'"
-                        @click="$refs.resourcesTable.collapseAll()"
-                        >Collapse all</b-button>
+                          class="mt-1 mb-1 mr-2"
+                          variant='outline-info'
+                          title="Group the rows by keywords"
+                          @click="groupBy('keywords')"
+                          >Group by keywords</b-button>
 
+                        
+                          <b-button
+                          class="mt-1 mb-1 mr-2"
+                          :disabled="isGroupedBy ? false : true"
+                          :title="isGroupedBy ? null : 'Group the table by clicking on any of the available tags (type, author, keywords)'"
+                          @click="$refs.resourcesTable.expandAll()"
+                          >Expand all</b-button>
 
-                      </div>
+                          <b-button
+                          class="mt-1 mb-1 mr-2"
+                          :disabled="isGroupedBy ? false : true"
+                          :title="isGroupedBy ? null : 'Group the table by clicking on any of the available tags (type, author, keywords)'"
+                          @click="$refs.resourcesTable.collapseAll()"
+                          >Collapse all</b-button>
+                    </div>
 
                     <template slot="table-header-row" slot-scope="props">
                       <span class="ml-3 float-left">
@@ -255,21 +257,11 @@
         isLoadingStatus: false,
       };
     },
-    mounted() {
-
-    },
-    computed: {
-    },
     methods: {
       getTypeVariant(value){
         return types.filter((function(type){
                             return type.value === value; 
                         }))[0].variant
-      },
-      onFiltered(filteredItems) {
-        // Trigger pagination to update the number of buttons/pages due to filtering
-        this.totalRows = filteredItems.length
-        this.currentPage = 1
       },
       groupBy(field, value = null){
         // all the logic to group and ungroup the rows goes here
@@ -329,7 +321,7 @@
         document.getElementById("readmore-" + id).style.setProperty('display', 'none')
         document.getElementById("readless-" + id).style.setProperty('display', '')
       },
- 
+
       // checkStatusAll(){
       //   this.isLoadingStatus = true
       //   var promiseArray = new Array() 

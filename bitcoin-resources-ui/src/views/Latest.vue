@@ -92,71 +92,26 @@
   
 
   export default {
+    props: ['resources', 
+    'sourceURL',
+    'isBusy',
+    'totalRows',
+    'countArticles',
+    'countBooks',
+    'countPodcasts',
+    'countAudios',
+    'countVideos',
+    'countLatest',
+    'resourcesLatest',
+    ],
     components: {
     },
     data() {
       return {
-        sourceURL: 'bitcoin-resources.csv',
-        isBusy: true, 
-        resources: [],
-        totalRows: 1,
-        countArticles: 0,
-        countBooks: 0,
-        countPodcasts: 0,
-        countAudios: 0,
-        countVideos: 0,
-        countLatest: 12,
-        resourcesLatest: [],
         maxCharsDescription: 100,
       };
     },
-    mounted() {
-      this.loadResources();
-    },
     methods: {
-      countRowsByType(t){
-        return this.resources.filter(function(item){
-          return item.type.includes(t);
-        }).length;
-      },
-      // returns an array with different elements from a comma separated string
-      splitToArray(str){
-        return str.split(",").map((item)=>item.trim());
-      },
-      loadResources(){
-        this.$papa.parsePromise = function(file, thisObject) {
-          return new Promise(function(complete, error) {
-            thisObject.$papa.parse(file, {
-                  header: true,
-                  download: true,
-                  delimiter: ",",
-                  quoteChar: '"',
-                  escapeChar: '"',
-                  skipEmptyLines: true,
-                  complete,
-                  error,
-            });
-          });
-        };
-        return this.$papa.parsePromise(this.sourceURL, this).
-          then(results => {
-            const items = results.data
-            items.map((item) => item.keywords = this.splitToArray(item.keywords))
-            items.map((item) => item.author = this.splitToArray(item.author))
-            this.isBusy = false;
-            this.resources = items
-            this.totalRows = items.length
-
-            this.countArticles = this.countRowsByType('article');
-            this.countBooks = this.countRowsByType('book');
-            this.countPodcasts = this.countRowsByType('podcast');
-            this.countVideos = this.countRowsByType('video');
-            this.countAudios = this.countRowsByType('audio');
-
-            this.resourcesLatest = this.resources.splice(-this.countLatest).reverse()
-            
-          })  
-      },
       percentageOfTotal(countResource){
         return ((countResource / this.totalRows) * 100).toFixed(1)
       },

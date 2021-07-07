@@ -39,7 +39,19 @@
       <div @click="$sidebar.displaySidebar(false)">
         <fade-transition :duration="200" origin="center top" mode="out-in">
           <!-- your content here -->
-          <router-view></router-view>
+          <router-view 
+            :resources="resources" 
+            :sourceURL="sourceURL" 
+            :isBusy="isBusy" 
+            :totalRows="totalRows"
+            :countArticles="countArticles"
+            :countBooks="countBooks"
+            :countPodcasts="countPodcasts"
+            :countAudios="countAudios"
+            :countVideos="countVideos"
+            :countLatest="12"
+            :resourcesLatest="resourcesLatest"
+            ></router-view>
         </fade-transition>
       </div>
       <content-footer v-if="!$route.meta.hideFooter"></content-footer>
@@ -78,17 +90,78 @@
       DashboardContent,
       FadeTransition
     },
+     data() {
+      return {
+        sourceURL: 'bitcoin-resources.csv',
+        resources: [],
+        isBusy: true, 
+        totalRows: 1,
+        countArticles: 0,
+        countBooks: 0,
+        countPodcasts: 0,
+        countAudios: 0,
+        countVideos: 0,
+        countLatest: 12,
+        resourcesLatest: [],
+      };
+    },
     methods: {
       initScrollbar() {
         let isWindows = navigator.platform.startsWith('Win');
         if (isWindows) {
           initScrollbar('sidenav');
         }
+      },
+      countRowsByType(t){
+        return this.resources.filter(function(item){
+          return item.type.includes(t);
+        }).length;
+      },
+      // returns an array with different elements from a comma separated string
+      splitToArray(str){
+        return str.split(",").map((item)=>item.trim());
+      },
+      loadResources(){
+        this.$papa.parsePromise = function(file, thisObject) {
+          return new Promise(function(complete, error) {
+            thisObject.$papa.parse(file, {
+                  header: true,
+                  download: true,
+                  delimiter: ",",
+                  quoteChar: '"',
+                  escapeChar: '"',
+                  skipEmptyLines: true,
+                  complete,
+                  error,
+            });
+          });
+        };
+        return this.$papa.parsePromise(this.sourceURL, this).
+          then(results => {
+            const items = results.data
+            items.map((item) => item.keywords = this.splitToArray(item.keywords))
+            items.map((item) => item.author = this.splitToArray(item.author))
+            this.isBusy = false;
+            this.resources = items
+            this.totalRows = items.length
+
+            this.countArticles = this.countRowsByType('article');
+            this.countBooks = this.countRowsByType('book');
+            this.countPodcasts = this.countRowsByType('podcast');
+            this.countVideos = this.countRowsByType('video');
+            this.countAudios = this.countRowsByType('audio');
+            this.resourcesLatest = this.resources.splice(-this.countLatest).reverse()
+          })  
+      },
+      percentageOfTotal(countResource){
+        return ((countResource / this.totalRows) * 100).toFixed(1)
       }
     },
     mounted() {
       this.initScrollbar()
-    }
+      this.loadResources()
+    },
+    
   };
 </script>
 <style lang="scss">
