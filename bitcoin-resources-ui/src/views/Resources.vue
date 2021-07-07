@@ -120,6 +120,7 @@
                   delimiter: ",",
                   quoteChar: '"',
                   escapeChar: '"',
+                  skipEmptyLines: true,
                   complete,
                   error,
             });

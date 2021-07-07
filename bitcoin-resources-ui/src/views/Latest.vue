@@ -64,7 +64,7 @@
           <b-card 
 
             :title="resource.title"
-            :sub-title="'By ' + resource.author.join(',') + ', published on ' + resource.date"
+            :sub-title="generateSubTitle(resource)"
             :img-src="resource.image ? '/latest/'+ resource.image : 'https://picsum.photos/600/300/?image=25'"
             img-alt="Image"
             img-top
@@ -132,6 +132,7 @@
                   delimiter: ",",
                   quoteChar: '"',
                   escapeChar: '"',
+                  skipEmptyLines: true,
                   complete,
                   error,
             });
@@ -152,11 +153,30 @@
             this.countVideos = this.countRowsByType('video');
             this.countAudios = this.countRowsByType('audio');
 
-            this.resourcesLatest = this.resources.splice(-this.countLatest)
+            this.resourcesLatest = this.resources.splice(-this.countLatest).reverse()
+            
           })  
       },
       percentageOfTotal(countResource){
         return ((countResource / this.totalRows) * 100).toFixed(1)
+      },
+      generateSubTitle(resource){
+        var authors, date
+        var result = ''
+        authors = (resource.author.length > 0) ? resource.author.join(', ') : ''
+        date = (resource.date != '') ? resource.date : ''
+
+        if(authors != '') {
+          result = 'By ' + authors
+          if (date != '') {
+            result += ', published on ' + date
+          }
+        } else {
+          if (date != '') {
+            result = 'Published on ' + date
+          }
+        }
+        return result
       }
     }
   };

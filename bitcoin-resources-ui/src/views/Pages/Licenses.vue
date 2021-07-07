@@ -22,7 +22,7 @@
         </b-col>
         <b-col class="col-md-6 col-xl-6">
           <b-card
-            title="Much content was collected from existing online sources"
+            title="Much content was found in existing online sources"
             sub-title="THANKS A LOT!"
             img-src="img/water.jpg"
             img-alt="Image"
@@ -31,7 +31,7 @@
             style="max-width: 100%;"
             class="mb-2 mr-2">
             <b-card-text>
-            We have collected many resources from collections that other people also shared online, such as 
+            We have used for this site many resources that other people also shared online, such as 
             <a href="https://endthefud.org" target="_blank">EndTheFUD</a>, 
             <a href="https://www.bitcoinerbooks.com" target="_blank">Bitcoiner Books</a>, 
             <a href="https://bitcoin-resources.com" target="_blank">Bitcoin Resources</a>, 
