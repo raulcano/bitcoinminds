@@ -17,6 +17,12 @@
                   styleClass="vgt-table condensed"
                   :group-options="isGroupedBy ? {enabled: true, collapsable: true} : {enabled: false}"
                    >
+                    <div slot="emptystate">
+                      <div class="text-center mb-3">
+                        <b-img src="/img/empty.jpg" width="300px"></b-img>
+                        <h2>No results found with for those filters :(</h2>
+                      </div>
+                    </div>
                     <div slot="table-actions">
                           <!-- <span class="text-sm mr-2 mt-1">
                             Showing {{ 'xxx' }} results
