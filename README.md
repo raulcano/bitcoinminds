@@ -20,7 +20,7 @@ Once the install is finished, start the server and visit in your browser the ena
 ```
 npm run serve
 ```
-
+![Screenshot1](bitcoinminds-ui/public/img/screenshot3.png)
 ## CSV file format
 
 The following fields and formats are the ones to be used in the file.
@@ -84,3 +84,5 @@ The integers correspond to these collections:
 - 1 -> MUST READ collection
 - 2 -> MUST LISTEN collection
 - 3 -> HOW-TO BITCOIN collection
+
+![Screenshot1](bitcoinminds-ui/public/img/screenshot2.png)
