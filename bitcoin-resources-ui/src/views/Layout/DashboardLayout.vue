@@ -7,7 +7,7 @@
                 :link="{
                   name: 'Latest',
                   path: '/latest',
-                  icon: 'ni ni-tag text-red',
+                  icon: 'ni ni-tag text-success',
                 }">
         </sidebar-item>
         
@@ -15,7 +15,7 @@
                 :link="{
                   name: 'Selected collections',
                   path: '/selected',
-                  icon: 'ni ni-favourite-28 text-success',
+                  icon: 'ni ni-favourite-28 text-red',
                 }">
         </sidebar-item>
         <sidebar-item
@@ -167,7 +167,7 @@
             this.countAudios = this.countRowsByType('audio');
             this.countGuides = this.countRowsByType('guide');
             this.countCollections = this.countRowsByType('collection');
-            this.resourcesLatest = this.resources.splice(-this.countLatest).reverse()
+            this.resourcesLatest = this.resources.slice(-this.countLatest).reverse()
           })  
       },
       percentageOfTotal(countResource){

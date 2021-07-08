@@ -136,7 +136,6 @@
                       return item.selected_collection.includes(selection.toString());
                     });
           this.loadedSelection = selection
-          console.log(this.resources.length)
         }
       },
       percentageOfTotal(countResource){
