@@ -263,6 +263,10 @@
         isLoadingStatus: false,
       };
     },
+    // beforeCreate() {
+    //   console.log('beforeCreate')
+    // },
+
     methods: {
       getTypeVariant(value){
         return types.filter((function(type){

@@ -25,6 +25,13 @@
                   icon: 'ni ni-tv-2 text-primary',
                 }">
         </sidebar-item>
+
+
+        <a href="bitcoin-resources.csv" class="nav-item" title="Download the CSV file with all the Bitcoin resources in this website">
+          <!----><!----><a href="bitcoin-resources.csv" class="nav-link">
+            <i class="ni ni-cloud-download-95 text-info"></i>
+            <span class="nav-link-text">Download CSV</span>
+        </a></a>
       </template>
 
       <template slot="links-after">

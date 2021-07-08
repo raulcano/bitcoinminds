@@ -4,8 +4,6 @@
       <b-col lg="6">
       </b-col>
       <b-col lg="6" class="text-right">
-        <a href="#/icons">Icons</a> | 
-        <a href="https://fontawesome.com/v4.7/icons/" target="_blank">More icons</a> | 
         <a href="#/licenses">Licenses, credits and attributions</a>
       </b-col>
     </b-row>
