@@ -68,7 +68,8 @@ Some suggested keywords are:
 A long text describing the content that is presented. E.g. the summary of a book.
 
 ### other
-Other metadata in the form of a JSON dictionary, that is, containig a set of key-value pairs. For example:
+Other metadata in the form of a JSON dictionary, that is, containig a set of key-value pairs (NOTE: At the moment of writing this, there is no functionality for this field).   
+For example:
 ```
 { key1: "value1", key2: "value2" }
 ```
