@@ -49,6 +49,9 @@
             :countPodcasts="countPodcasts"
             :countAudios="countAudios"
             :countVideos="countVideos"
+            :countCollections="countCollections"
+            :countGuides="countGuides"
+            :countTools="countTools"
             :countLatest="12"
             :resourcesLatest="resourcesLatest"
             ></router-view>
@@ -101,6 +104,9 @@
         countPodcasts: 0,
         countAudios: 0,
         countVideos: 0,
+        countCollections: 0,
+        countGuides: 0,
+        countTools: 0,
         countLatest: 12,
         resourcesLatest: [],
       };
@@ -150,6 +156,8 @@
             this.countPodcasts = this.countRowsByType('podcast');
             this.countVideos = this.countRowsByType('video');
             this.countAudios = this.countRowsByType('audio');
+            this.countGuides = this.countRowsByType('guide');
+            this.countCollections = this.countRowsByType('collection');
             this.resourcesLatest = this.resources.splice(-this.countLatest).reverse()
           })  
       },

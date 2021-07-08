@@ -44,14 +44,14 @@
 
         </b-col>
         <b-col xl="3" md="6">
-          <stats-card title="Video and audio episodes"
+          <stats-card title="Guides and Tools"
                       type="gradient-info"
-                      :sub-title="(countVideos + countAudios).toString()"
+                      :sub-title="(countTools + countGuides).toString()"
                       icon="ni ni-tv-2"
                       class="mb-4">
 
             <template slot="footer">
-              <span class="text-success mr-2">{{ percentageOfTotal(countVideos + countAudios)}} %</span>
+              <span class="text-success mr-2">{{ percentageOfTotal(countTools + countGuides)}} %</span>
               <span class="text-nowrap">of {{totalRows}} resources</span>
             </template>
           </stats-card>
@@ -102,7 +102,10 @@
     'countAudios',
     'countVideos',
     'countLatest',
+    'countGuides',
+    'countCollections',
     'resourcesLatest',
+    'countTools'
     ],
     components: {
     },
