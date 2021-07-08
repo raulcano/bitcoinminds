@@ -1,4 +1,4 @@
-# Bitcoin Minds | The most comprehensive list of Bitcoin resources online
+# Bitcoin Minds | The most comprehensive list of Bitcoin resources
 
 The purpose of Bitcoin Minds is to store:
 - A [single CSV](/bitcoin-resources-ui/public/bitcoin-resources.csv) file with a curated collection of resources to study and learn from Bitcoin (e.g. articles, books, podcasts, etc.).
