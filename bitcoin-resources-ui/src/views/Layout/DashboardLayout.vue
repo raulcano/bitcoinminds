@@ -10,6 +10,14 @@
                   icon: 'ni ni-tag text-red',
                 }">
         </sidebar-item>
+        
+        <sidebar-item
+                :link="{
+                  name: 'Selected collections',
+                  path: '/selected',
+                  icon: 'ni ni-favourite-28 text-success',
+                }">
+        </sidebar-item>
         <sidebar-item
                 :link="{
                   name: 'All Bitcoin resources',
@@ -147,6 +155,7 @@
             const items = results.data
             items.map((item) => item.keywords = this.splitToArray(item.keywords))
             items.map((item) => item.author = this.splitToArray(item.author))
+            items.map((item) => item.selected_collection = this.splitToArray(item.selected_collection))
             this.isBusy = false;
             this.resources = items
             this.totalRows = items.length
