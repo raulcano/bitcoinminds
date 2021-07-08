@@ -9,10 +9,10 @@ The purpose of Bitcoin Minds is to store:
 ## Installing the User Interface
 Go to a folder of your choice and clone this repository:
 ```
-git clone https://github.com/raulcano/bitcoin-resources.git
+git clone https://github.com/raulcano/bitcoinminds.git
 ```
 
-CD into the folder ```bitcoin-resources-ui``` and install the packages:
+CD into the folder ```bitcoinminds-ui``` and install the packages:
 ```
 npm install
 ```
