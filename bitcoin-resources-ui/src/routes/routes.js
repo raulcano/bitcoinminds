@@ -48,6 +48,11 @@ const routes = [
         component: () => import(/* webpackChunkName: "demo" */ '../views/Latest.vue')
       },
       {
+        path: '/selected',
+        name: 'selected',
+        component: () => import(/* webpackChunkName: "demo" */ '../views/Selected.vue')
+      },
+      {
         path: '/licenses',
         name: 'licenses',
         component: () => import(/* webpackChunkName: "demo" */ '../views/Pages/Licenses.vue')

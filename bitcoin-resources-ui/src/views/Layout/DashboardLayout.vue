@@ -10,6 +10,14 @@
                   icon: 'ni ni-tag text-red',
                 }">
         </sidebar-item>
+        
+        <sidebar-item
+                :link="{
+                  name: 'Selected collections',
+                  path: '/selected',
+                  icon: 'ni ni-favourite-28 text-success',
+                }">
+        </sidebar-item>
         <sidebar-item
                 :link="{
                   name: 'All Bitcoin resources',
@@ -49,6 +57,9 @@
             :countPodcasts="countPodcasts"
             :countAudios="countAudios"
             :countVideos="countVideos"
+            :countCollections="countCollections"
+            :countGuides="countGuides"
+            :countTools="countTools"
             :countLatest="12"
             :resourcesLatest="resourcesLatest"
             ></router-view>
@@ -101,6 +112,9 @@
         countPodcasts: 0,
         countAudios: 0,
         countVideos: 0,
+        countCollections: 0,
+        countGuides: 0,
+        countTools: 0,
         countLatest: 12,
         resourcesLatest: [],
       };
@@ -141,6 +155,7 @@
             const items = results.data
             items.map((item) => item.keywords = this.splitToArray(item.keywords))
             items.map((item) => item.author = this.splitToArray(item.author))
+            items.map((item) => item.selected_collection = this.splitToArray(item.selected_collection))
             this.isBusy = false;
             this.resources = items
             this.totalRows = items.length
@@ -150,6 +165,8 @@
             this.countPodcasts = this.countRowsByType('podcast');
             this.countVideos = this.countRowsByType('video');
             this.countAudios = this.countRowsByType('audio');
+            this.countGuides = this.countRowsByType('guide');
+            this.countCollections = this.countRowsByType('collection');
             this.resourcesLatest = this.resources.splice(-this.countLatest).reverse()
           })  
       },

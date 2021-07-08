@@ -78,6 +78,7 @@
               Image by <a href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=768815">Free-Photos</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=768815">Pixabay</a><br>
               Image by <a href="https://pixabay.com/users/drfuenteshernandez-7757554/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4903050">Manuel Darío Fuentes Hernández</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4903050">Pixabay</a><br>
               <a href='https://www.freepik.com/vectors/people'>People vector created by stories - www.freepik.com</a><br>
+              Image by <a href="https://pixabay.com/users/12019-12019/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2225445">David Mark</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2225445">Pixabay</a><br>
             </b-card-text>
           </b-card>
         </b-col>
