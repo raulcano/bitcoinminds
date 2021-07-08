@@ -72,3 +72,15 @@ Other metadata in the form of a JSON dictionary, that is, containig a set of key
 ```
 { key1: "value1", key2: "value2" }
 ```
+
+### image
+The name of an image file that must be stored in public/latest. The image will be shown for the corresponding resource in the pages "Latest" and "Selected Collections"
+
+### selected_collection
+An integer from 1 to 3, so the item is included in the "Selected Collections", as follows.  
+If it's empty, it wont be included in any collection.  
+If you want to include the item in more than one collection, you can add more than one integer separated by a comma.  
+The integers correspond to these collections:
+- 1 -> MUST READ collection
+- 2 -> MUST LISTEN collection
+- 3 -> HOW-TO BITCOIN collection
