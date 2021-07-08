@@ -1,18 +1,18 @@
 # Bitcoin Minds | The most comprehensive list of Bitcoin resources
 
 The purpose of Bitcoin Minds is to store:
-- A [single CSV](/bitcoin-resources-ui/public/bitcoin-resources.csv) file with a curated collection of resources to study and learn from Bitcoin (e.g. articles, books, podcasts, etc.).
+- A [single CSV](/bitcoinminds-ui/public/bitcoin-resources.csv) file with a curated collection of resources to study and learn from Bitcoin (e.g. articles, books, podcasts, etc.).
 - The code of a simple Bootstrap Vue interface to load and present the resources from the CSV file.
 
-![Screenshot1](bitcoin-resources-ui/public/img/screenshot1.png)
+![Screenshot1](bitcoinminds-ui/public/img/screenshot1.png)
 
 ## Installing the User Interface
 Go to a folder of your choice and clone this repository:
 ```
-git clone https://github.com/raulcano/bitcoin-resources.git
+git clone https://github.com/raulcano/bitcoinminds.git
 ```
 
-CD into the folder ```bitcoin-resources-ui``` and install the packages:
+CD into the folder ```bitcoinminds-ui``` and install the packages:
 ```
 npm install
 ```
