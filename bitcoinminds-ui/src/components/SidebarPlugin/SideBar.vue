@@ -53,7 +53,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="https://github.com/raulcano/bitcoin-resources"
+                           href="https://github.com/raulcano/bitcoinminds"
                            target="_blank">
                             <i class="ni ni-like-2"></i> GitHub
                         </a>
