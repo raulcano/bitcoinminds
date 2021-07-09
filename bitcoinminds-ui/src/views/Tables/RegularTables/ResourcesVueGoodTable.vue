@@ -16,6 +16,10 @@
                   :rows="isGroupedBy ? resourcesGrouped : resources"
                   styleClass="vgt-table condensed"
                   :group-options="isGroupedBy ? {enabled: true, collapsable: true} : {enabled: false}"
+                  :pagination-options="{
+                    enabled: true,
+                    mode: 'records',
+                  }"
                    >
                     <div slot="emptystate">
                       <div class="text-center mb-3">
