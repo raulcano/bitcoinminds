@@ -102,9 +102,12 @@
               @click="toggleQRcode = !toggleQRcode">
                 Shut up and take my money
               </b-button>
-              <b-button size="sm" variant="secondary" v-b-popover="'I know...Just need some time :( Alternatively, you could send at TX with very low fees, I\'m not in a hurry :D :D'">
-                Maybe when you enable Lightning for donations
-              </b-button>
+              <b-link class="btn btn-info btn-sm"
+                href="https://checkout.opennode.com/p/211145a2-3eff-420c-b1ab-923f7157e6c3"
+                target="_blank"
+                >
+                Lightning donation (via OpenNode)
+              </b-link>
             </template>
 
 
