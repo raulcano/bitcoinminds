@@ -47,9 +47,10 @@
                           </b-button> -->
                         
                         <a
-                          :href="sourceURL"
+                          href="https://raw.githubusercontent.com/raulcano/bitcoinminds/main/bitcoinminds-ui/public/bitcoin-resources.csv"
                           class="mt-1 mb-1 mr-2 btn btn-success"
-                          title="Download the CSV file with all the data in this table"
+                          title="Download the CSV file with all the Bitcoin resources - Open this link and save it with Ctrl + S to your device"
+                          target="_blank"
                           >DOWNLOAD</a>
 
                         <b-button

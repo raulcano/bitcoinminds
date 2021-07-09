@@ -27,8 +27,14 @@
         </sidebar-item>
 
 
-        <a href="bitcoin-resources.csv" class="nav-item" title="Download the CSV file with all the Bitcoin resources in this website">
-          <!----><!----><a href="bitcoin-resources.csv" class="nav-link">
+        <a href="https://raw.githubusercontent.com/raulcano/bitcoinminds/main/bitcoinminds-ui/public/bitcoin-resources.csv" 
+        class="nav-item" title="Download the CSV file with all the Bitcoin resources in this website - Open this link and save it with Ctrl + S to your device"
+        target="_blank"
+        >
+          <a href="https://raw.githubusercontent.com/raulcano/bitcoinminds/main/bitcoinminds-ui/public/bitcoin-resources.csv"
+          class="nav-link"
+          target="_blank"
+          >
             <i class="ni ni-cloud-download-95 text-info"></i>
             <span class="nav-link-text">Download CSV</span>
         </a></a>
