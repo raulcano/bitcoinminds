@@ -31,9 +31,9 @@
           </stats-card>
         </b-col>
         <b-col xl="3" md="6">
-          <stats-card title="Podcasts"
+          <stats-card title="Podcasts and episodes"
                       type="gradient-green"
-                      :sub-title="countPodcasts.toString()"
+                      :sub-title="(countPodcasts + countAudios + countVideos).toString()"
                       icon="ni ni-headphones"
                       class="mb-4">
 
