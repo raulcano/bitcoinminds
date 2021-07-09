@@ -45,7 +45,7 @@
                           <span v-if="isLoadingStatus">loading...</span>
                           <span v-else>Check status of links</span>
                           </b-button> -->
-                        
+                          
                         <a
                           href="https://raw.githubusercontent.com/raulcano/bitcoinminds/main/bitcoinminds-ui/public/bitcoin-resources.csv"
                           class="mt-1 mb-1 mr-2 btn btn-success"
