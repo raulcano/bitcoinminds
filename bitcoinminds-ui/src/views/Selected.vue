@@ -99,7 +99,7 @@
             <b-card-text class="text-sm">
               I have collected here the resources that I liked or helped me the most in my own Bitcoin journey. That's why this is the most personal 
               section in this website, and hence, likely more biased. As you have seen already, there are thousands of amazing Bitcoin resources and it can be overwhelming to know where 
-              to start. With this curated lists, maybe I can help you navigate through the sea of Bitcoin knowledge out there.
+              to start. With these curated lists, maybe I can help you navigate through the sea of Bitcoin knowledge out there.
             </b-card-text>
           </b-card>
         </b-col>
