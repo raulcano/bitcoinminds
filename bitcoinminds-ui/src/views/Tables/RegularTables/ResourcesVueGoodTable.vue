@@ -119,7 +119,24 @@
                         :id="'status-' + props.row.id"
                         style="display: none"
                         ></b-badge>
+                        <!-- Copy link button -->
+                        <i class="ni ni-ungroup mr-2 copy-link-button"
+                        :id="'copy-link-button-' + props.row.id"
+                        title="Copy link"
+                        @click="copyLink(props.row.link)"
+                        v-observe-visibility="rowVisibilityChanged"></i>
 
+                        <!-- Send to Pocket button -->
+                        <b-img
+                          v-if="props.row.type === 'article' || props.row.type === 'guide'"
+                          src="img/icons/pocket.png"
+                          width="13px"
+                          title="Send to Pocket"
+                          class="send-to-pocket mr-2"
+                          @click="sendToPocket(props.row.link)"
+                          >
+                        </b-img>
+                        <!-- Title and link -->
                         <b-link :href="props.row.link" target="_blank">{{props.row.title}}</b-link>
                         <br>
                         <div class="description">
@@ -274,9 +291,31 @@
         allowHTML: true,
         placement: 'auto',
       });
+      
     },
-
     methods: {
+      rowVisibilityChanged(isVisible, entry){
+        if(isVisible){
+          this.$tippy('#' + entry.target.id, {
+            content: 'Ok, copied ;)',
+            allowHTML: true,
+            trigger: 'click',
+            placement: 'auto',
+          });
+        }
+        
+      },
+      copyLink(link){
+        this.$copyText(link).then(function (e) {
+          // console.log(e.text)
+        }, function (e) {
+          // console.log('Can not copy: ' + e)
+        })
+      },
+
+      sendToPocket(link){
+        window.open('https://getpocket.com/edit?url=' + link, '_blank')
+      },
       getTypeVariant(value){
         return types.filter((function(type){
                             return type.value === value; 
@@ -401,4 +440,23 @@ td.title-cell .description:hover{
 .show-more, .show-less {
   cursor: pointer;
 }
+
+.ni-ungroup {
+  color:silver;
+}
+
+.ni-ungroup:hover {
+  color:slategray;
+  cursor: pointer;
+}
+
+.send-to-pocket {
+  opacity: 0.4;
+}
+
+.send-to-pocket:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
 </style>

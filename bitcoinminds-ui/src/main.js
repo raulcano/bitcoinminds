@@ -29,6 +29,13 @@ import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css'; // for styling
 Vue.prototype.$tippy = tippy // // global variable to make tippy accessible from components with this.$tippy
 /////////////////////////////
+import VueClipboard from 'vue-clipboard2'
+Vue.use(VueClipboard)
+////////////////////////////
+import VueObserveVisibility from 'vue-observe-visibility'
+Vue.use(VueObserveVisibility)
+
+
 // router setup
 import router from './routes/router';
 
@@ -44,7 +51,6 @@ new Vue({
   el: '#app',
   render: h => h(App),
   router,
-  tippy
 });
 
 
