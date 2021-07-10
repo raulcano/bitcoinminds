@@ -184,6 +184,7 @@
             this.countAudios = this.countRowsByType('audio');
             this.countGuides = this.countRowsByType('guide');
             this.countCollections = this.countRowsByType('collection');
+            this.countTools = this.countRowsByType('tool');
             this.resourcesLatest = this.resources.slice(-this.countLatest).reverse()
           })  
       },
