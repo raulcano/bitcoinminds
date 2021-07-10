@@ -100,6 +100,7 @@
               Image by <a href="https://pixabay.com/users/pixel2013-2364555/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4031973">S. Hermann &amp; F. Richter</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4031973">Pixabay</a><br>
               Image by <a href="https://pixabay.com/users/schäferle-3372715/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2053281">Schäferle</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2053281">Pixabay</a><br>
               Image by <a href="https://pixabay.com/users/prettysleepy1-2855492/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3160715">prettysleepy1</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=3160715">Pixabay</a><br>
+              Image by <a href="https://pixabay.com/users/jillwellington-334088/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=591576">Jill Wellington</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=591576">Pixabay</a><br>
               <br>
             </b-card-text>
           </b-card>
@@ -109,11 +110,9 @@
   </div>
 </template>
 <script>
-import BaseDropdown from '../../components/BaseDropdown.vue';
 
   export default {
     components: {
-        BaseDropdown
     },
     data() {
       return {
