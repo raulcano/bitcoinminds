@@ -53,8 +53,8 @@
                         <a
                           href="https://raw.githubusercontent.com/raulcano/bitcoinminds/main/bitcoinminds-ui/public/bitcoin-resources.csv"
                           class="mt-1 mb-1 mr-2 btn btn-success"
-                          title="Download the CSV file with all the Bitcoin resources - Open this link and save it with Ctrl + S to your device"
                           target="_blank"
+                          id="download-button"
                           >DOWNLOAD</a>
 
                         <b-button
@@ -268,9 +268,13 @@
         isLoadingStatus: false,
       };
     },
-    // beforeCreate() {
-    //   console.log('beforeCreate')
-    // },
+    mounted() {
+      this.$tippy('#download-button', {
+        content: 'Open this link and <strong>save it with Ctrl + S</strong> to your device to download all Bitcoin resources to a CSV file',
+        allowHTML: true,
+        placement: 'auto',
+      });
+    },
 
     methods: {
       getTypeVariant(value){

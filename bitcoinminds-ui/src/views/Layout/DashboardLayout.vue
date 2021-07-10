@@ -23,13 +23,16 @@
                   name: 'All Bitcoin resources',
                   path: '/resources',
                   icon: 'ni ni-tv-2 text-primary',
-                }">
+                }"
+                
+                >
         </sidebar-item>
 
 
         <a href="https://raw.githubusercontent.com/raulcano/bitcoinminds/main/bitcoinminds-ui/public/bitcoin-resources.csv" 
-        class="nav-item" title="Download the CSV file with all the Bitcoin resources in this website - Open this link and save it with Ctrl + S to your device"
+        class="nav-item" 
         target="_blank"
+        id="download-link"
         >
           <a href="https://raw.githubusercontent.com/raulcano/bitcoinminds/main/bitcoinminds-ui/public/bitcoin-resources.csv"
           class="nav-link"
@@ -106,6 +109,7 @@
   import ContentFooter from './ContentFooter.vue';
   import DashboardContent from './Content.vue';
   import { FadeTransition } from 'vue2-transitions';
+  
 
   export default {
     components: {
@@ -190,6 +194,11 @@
     mounted() {
       this.initScrollbar()
       this.loadResources()
+      this.$tippy('#download-link', {
+        content: 'Open this link and <strong>save it with Ctrl + S</strong> to your device to download all Bitcoin resources to a CSV file',
+        allowHTML: true,
+        placement: 'auto',
+      });
     },
     
   };
