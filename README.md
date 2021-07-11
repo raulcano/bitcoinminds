@@ -30,7 +30,10 @@ The first row of the CSV file will be the name of the column (each field).
 A unique incremental integer acting as the primary key
 
 ### date
-A string of the format YYYY-MM-DD
+A string of the format YYYY-MM-DD representing the creation date of the resource. E.g. when an article was written.
+
+### date_added
+A string of the format YYYY-MM-DD representing the date of when this particular resource was added to the CSV file.
 
 ### title
 A string with the title of the resource.
