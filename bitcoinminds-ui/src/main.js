@@ -34,8 +34,11 @@ Vue.use(VueClipboard)
 ////////////////////////////
 import VueObserveVisibility from 'vue-observe-visibility'
 Vue.use(VueObserveVisibility)
-
-
+/////////////////////////////
+import VueGtag from "vue-gtag";
+Vue.use(VueGtag, {
+  config: { id: process.env.VUE_APP_GTAG_ID }
+});
 // router setup
 import router from './routes/router';
 
