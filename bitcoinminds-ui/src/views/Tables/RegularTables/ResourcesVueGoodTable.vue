@@ -292,6 +292,7 @@
           return e.field;
         }).indexOf('type');
         this.columns[pos]['filterOptions'].filterValue = this.$route.query.filter_type
+        this.scrollTableIntoView()
       }
     },
     mounted() {
@@ -299,7 +300,9 @@
         content: 'Open this link and <strong>save it with Ctrl + S</strong> to your device to download all Bitcoin resources to a CSV file',
         allowHTML: true,
         placement: 'auto',
+        
       });
+      
     },
     methods: {
       rowVisibilityChanged(isVisible, entry){
@@ -387,6 +390,17 @@
         document.getElementById("readmore-" + id).style.setProperty('display', 'none')
         document.getElementById("readless-" + id).style.setProperty('display', '')
       },
+      scrollTableIntoView(){
+        // this.$refs.resourcesTable.$el.scrollIntoView({ block: "end", behavior: "smooth" })
+        // document.getElementById('').scrollIntoView({ block: "end", behavior: "smooth" });
+        // this.$refs.resourcesTable.$el.scrollIntoView({ block: "end", behavior: "smooth" })
+
+        // let element = document.getElementById("section-search-results");
+        //     if (element) {
+        //         // The desired element was found in the DOM, scroll to it
+        //         element.scrollIntoView({ block: "start", behavior: "smooth" });
+        //     }
+      }
 
       // checkStatusAll(){
       //   this.isLoadingStatus = true
