@@ -237,6 +237,7 @@
               enabled: true,
               placeholder: 'Select ...',
               filterDropdownItems: types,
+              filterValue: this.$route.query.filter_type
             },
           },
           {
@@ -285,13 +286,20 @@
         isLoadingStatus: false,
       };
     },
+    watch: {
+      '$route.query.filter_type'() {
+        let pos = this.columns.map(function (e) {
+          return e.field;
+        }).indexOf('type');
+        this.columns[pos]['filterOptions'].filterValue = this.$route.query.filter_type
+      }
+    },
     mounted() {
       this.$tippy('#download-button', {
         content: 'Open this link and <strong>save it with Ctrl + S</strong> to your device to download all Bitcoin resources to a CSV file',
         allowHTML: true,
         placement: 'auto',
       });
-      
     },
     methods: {
       rowVisibilityChanged(isVisible, entry){

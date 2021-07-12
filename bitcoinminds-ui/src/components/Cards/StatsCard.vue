@@ -1,10 +1,15 @@
 <template>
-  <card class="card-stats" :show-footer-line="true">
-    <b-row>
+  <card :show-footer-line="true" 
+  class="card-stats">
+    <b-row 
+    :class="link ? 'card-with-link':''"
+    @click="cardClicked">
 
       <b-col>
         <slot>
-          <h5 class="card-title text-uppercase text-muted mb-0" v-if="title">{{title}}</h5>
+          <h5 class="card-title text-uppercase text-muted mb-0" v-if="title"
+          :title="tooltip?tooltip:''"
+          >{{title}}</h5>
           <span class="h2 font-weight-bold mb-0" v-if="subTitle">{{subTitle}}</span>
         </slot>
       </b-col>
@@ -42,8 +47,21 @@
       icon: String,
       title: String,
       subTitle: String,
+      link: String,
+      tooltip: String,
       iconClasses: [String, Array]
-    }
+    },
+    methods: {
+      cardClicked(){
+        if (this.link) {
+          window.open(this.link, '_self')
+        }
+      }
+    }, 
   };
 </script>
-<style></style>
+<style>
+.card-with-link:hover {
+  cursor: pointer;
+}
+</style>

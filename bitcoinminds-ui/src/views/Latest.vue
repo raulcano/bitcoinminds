@@ -8,6 +8,8 @@
                       type="gradient-red"
                       :sub-title="countArticles.toString()"
                       icon="ni ni-single-copy-04"
+                      link="#/resources?filter_type=article"
+                      tooltip="This includes all written articles, except if they are a guide"
                       class="mb-4">
 
             <template slot="footer">
@@ -21,6 +23,8 @@
                       type="gradient-orange"
                       :sub-title="countBooks.toString()"
                       icon="ni ni-books"
+                      link="#/resources?filter_type=book"
+                      tooltip="This includes books"
                       class="mb-4">
 
             <template slot="footer">
@@ -34,6 +38,8 @@
                       type="gradient-green"
                       :sub-title="(countPodcasts + countAudios + countVideos).toString()"
                       icon="ni ni-headphones"
+                      link="#/resources?filter_type=podcast"
+                      tooltip="This includes podcasts (as show) and all individual episodes we have collected both in audio and video"
                       class="mb-4">
 
             <template slot="footer">
@@ -48,6 +54,8 @@
                       type="gradient-info"
                       :sub-title="(countTools + countGuides).toString()"
                       icon="ni ni-tv-2"
+                      link="#/resources?filter_type=guide"
+                      tooltip="This includes how-to guides and other links with tools for particular stuff (e.g. blockchain explorers)"
                       class="mb-4">
 
             <template slot="footer">
