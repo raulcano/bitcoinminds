@@ -1,9 +1,10 @@
 <template>
 
   <div>
-    <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-translucent-darker">
+    <!-- <base-header class="pb-6 pb-8 pt-5 pt-md-8 bg-translucent-darker"> -->
+    <base-header class="pt-5 pb-8 bg-translucent-darker">
       <!-- Card stats -->
-      <b-row>
+      <!-- <b-row>
         <b-col xl="3" md="6">
           <stats-card title="Articles"
                       type="gradient-red"
@@ -65,7 +66,7 @@
             </template>
           </stats-card>
         </b-col>
-      </b-row>
+      </b-row> -->
     </base-header>
     <b-container fluid class="mt--7">
       <b-row>
