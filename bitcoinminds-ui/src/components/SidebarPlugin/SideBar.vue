@@ -38,13 +38,12 @@
                 <p class="text-muted about-text">
                   'Bitcoin Minds' is the most comprehensive list of Bitcoin resources online, updated regularly.
                   If you are going down the Bitcoin rabbit hole, you'll probably want to keep close this tool. 
-                  Feel free to contact me at:
                 </p>
                 
                 
                 <!--Navigation-->
                 <ul class="navbar-nav mb-md-3">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link"
                            href="https://twitter.com/raul__cano"
                            target="_blank">
@@ -65,7 +64,7 @@
                            target="_blank">
                             <i class="ni ni-bulb-61"></i> Blog
                         </a>
-                    </li>
+                    </li> -->
                     
                     <li class="nav-item">
                         <a class="nav-link"
