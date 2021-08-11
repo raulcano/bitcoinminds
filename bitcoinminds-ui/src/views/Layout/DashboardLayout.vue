@@ -39,7 +39,7 @@
           target="_blank"
           >
             <i class="ni ni-cloud-download-95 text-info"></i>
-            <span class="nav-link-text">Download CSV</span>
+            <span class="nav-link-text">Download</span>
         </a></a>
       </template>
 
