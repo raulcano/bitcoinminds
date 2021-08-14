@@ -20,14 +20,15 @@
             <b-card-text class="text-sm">
             Understanding Bitcoin can be overwhelming, especially if you are a newcomer to the space.<br>
             If you would like to be guided by an expert, we can pair you with the right person for as much time as you need.<br>
+            <br>
             We can help you in the following topics:
               <ul>
-                <li>General concepts of Bitcoin</li>
-                <li>How to buy your Bitcoin?</li>
-                <li>Custody and wallets: how to keep your Bitcoin safe?</li>
-                <li>Privacy: what are the alternatives to use Bitcoin in a private manner?</li>
-                <li>Installing your own node</li>
-                <li>How to earn interest with your Bitcoin without selling it</li>
+                <li><strong>General</strong> concepts of Bitcoin</li>
+                <li>How to <strong>buy</strong> your Bitcoin?</li>
+                <li><strong>Custody</strong> and wallets: how to keep your Bitcoin safe?</li>
+                <li><strong>Privacy</strong>: what are the alternatives to use Bitcoin in a private manner?</li>
+                <li>Installing <strong>your own node</strong></li>
+                <li>How to <strong>earn interest</strong> with your Bitcoin without selling it</li>
               </ul>
             If you are interested in such, do not hesitate to contact us to arrange a one-on-one session.<br/>
             Just drop an email at <span class="text-primary"> bitcoinminds@protonmail.com</span>
