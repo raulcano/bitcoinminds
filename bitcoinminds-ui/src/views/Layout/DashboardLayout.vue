@@ -27,6 +27,15 @@
                 
                 >
         </sidebar-item>
+        <sidebar-item
+                :link="{
+                  name: 'Need an expert?',
+                  path: '/consulting',
+                  icon: 'ni ni-circle-08 text-warning',
+                }"
+                id="consulting"
+                >
+        </sidebar-item>
 
 
         <a href="https://raw.githubusercontent.com/raulcano/bitcoinminds/main/bitcoinminds-ui/public/bitcoin-resources.csv" 
@@ -197,6 +206,11 @@
       this.loadResources()
       this.$tippy('#download-link', {
         content: 'Open this link and <strong>save it with Ctrl + S</strong> to your device to download all Bitcoin resources to a CSV file',
+        allowHTML: true,
+        placement: 'auto',
+      });
+      this.$tippy('#consulting', {
+        content: 'Book a one-on-one session with an expert',
         allowHTML: true,
         placement: 'auto',
       });
