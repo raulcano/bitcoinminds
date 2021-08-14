@@ -30,10 +30,10 @@
         <sidebar-item
                 :link="{
                   name: 'Need an expert?',
-                  path: '/consulting',
+                  path: '/experts',
                   icon: 'ni ni-circle-08 text-warning',
                 }"
-                id="consulting"
+                id="experts"
                 >
         </sidebar-item>
 
@@ -209,7 +209,7 @@
         allowHTML: true,
         placement: 'auto',
       });
-      this.$tippy('#consulting', {
+      this.$tippy('#experts', {
         content: 'Book a one-on-one session with an expert',
         allowHTML: true,
         placement: 'auto',
