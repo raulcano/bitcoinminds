@@ -200,7 +200,7 @@
     </b-card>
 </template>
 <script>
-  import axios from 'axios'
+  // import axios from 'axios'
   import flags_dict from '@/assets/language-flags-mapping.js'
   import types from '@/assets/types.js'
   export default {
@@ -226,13 +226,14 @@
             filterOptions: {
               enabled: true,
               placeholder: 'Filter by title',
+              filterValue: this.$route.query.filter_title
             },
           },
           {
             label: 'Type',
             field: 'type',
             tdClass: 'text-center align-middle',
-            tooltip: 'For a description of each type, visit https://github.com/raulcano/bitcoin-resources',
+            tooltip: 'For a description of each type, visit https://github.com/raulcano/bitcoinminds',
             filterOptions: {
               enabled: true,
               placeholder: 'Select ...',
@@ -251,6 +252,7 @@
                 { value: 'en', text: 'English' },  
                 { value: 'es', text: 'Español' },  
               ],
+              filterValue: this.$route.query.filter_language
             },
           },
           {
@@ -260,6 +262,7 @@
             filterOptions: {
               enabled: true,
               placeholder: 'Filter by author',
+              filterValue: this.$route.query.filter_author
             },
           },
           {
@@ -270,6 +273,7 @@
             filterOptions: {
               enabled: true,
               placeholder: 'Filter by keyword',
+              filterValue: this.$route.query.filter_keywords
             },
           },
           // {
@@ -287,13 +291,41 @@
       };
     },
     watch: {
+      '$route.query.filter_title'() {
+        let pos = this.columns.map(function (e) {
+          return e.field;
+        }).indexOf('title');
+        this.columns[pos]['filterOptions'].filterValue = this.$route.query.filter_title
+        this.scrollTableIntoView()
+      },
       '$route.query.filter_type'() {
         let pos = this.columns.map(function (e) {
           return e.field;
         }).indexOf('type');
         this.columns[pos]['filterOptions'].filterValue = this.$route.query.filter_type
         this.scrollTableIntoView()
-      }
+      },
+      '$route.query.filter_keywords'() {
+        let pos = this.columns.map(function (e) {
+          return e.field;
+        }).indexOf('keywords');
+        this.columns[pos]['filterOptions'].filterValue = this.$route.query.filter_keywords
+        this.scrollTableIntoView()
+      },
+      '$route.query.filter_language'() {
+        let pos = this.columns.map(function (e) {
+          return e.field;
+        }).indexOf('language');
+        this.columns[pos]['filterOptions'].filterValue = this.$route.query.filter_language
+        this.scrollTableIntoView()
+      },
+      '$route.query.filter_author'() {
+        let pos = this.columns.map(function (e) {
+          return e.field;
+        }).indexOf('author');
+        this.columns[pos]['filterOptions'].filterValue = this.$route.query.filter_author
+        this.scrollTableIntoView()
+      },
     },
     mounted() {
       this.$tippy('#download-button', {
@@ -302,7 +334,6 @@
         placement: 'auto',
         
       });
-      
     },
     methods: {
       rowVisibilityChanged(isVisible, entry){
