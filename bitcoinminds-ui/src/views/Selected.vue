@@ -126,6 +126,18 @@
         maxCharsDescription: 100,
       };
     },
+    mounted() {
+      if(this.resources.length > 0){
+        this.loadSelection(1)  
+      }
+      // this.loadSelection(1)
+    },
+    watch: {
+      resources: function (newValue, oldValue) {
+        // console.log("newValue: %s, previousValue: %s", newValue, oldValue);
+        this.loadSelection(1)
+      },
+    },
     methods: {
       loadSelection(selection){
         if(this.loadedSelection == selection){
