@@ -24,8 +24,15 @@
                   path: '/resources',
                   icon: 'ni ni-tv-2 text-primary',
                 }"
-                
+
                 >
+        </sidebar-item>
+        <sidebar-item
+                :link="{
+                  name: 'Calculator',
+                  path: '/calculator',
+                  icon: 'ni ni-chart-bar-32 text-orange',
+                }">
         </sidebar-item>
         <sidebar-item
                 :link="{
