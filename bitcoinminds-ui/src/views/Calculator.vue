@@ -49,7 +49,7 @@
           <b-card class="shadow" no-body>
             <b-card-header class="bg-transparent border-0 pb-0">
               <h5 class="mb-0">BTC needed as collateral vs. your max BTC</h5>
-              <small class="text-muted">Red zone = collateral insufficient</small>
+              <small class="text-muted">Make sure that the 'BTC needed as collateral' (orange line) is always below 'Your max BTC' (red line). Otherwise, you'll be liquidated</small>
             </b-card-header>
             <b-card-body>
               <div style="position:relative;height:300px;">
