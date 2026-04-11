@@ -4,7 +4,7 @@
       <b-row>
         <b-col>
           <h1 class="text-white">Rent or Buy?</h1>
-          <p class="text-white">Compare the financial outcome of renting (and investing the difference) versus buying a home.</p>
+          <p class="text-white">Compare the financial outcome of renting (and investing the difference between the mortgage and rental monthly payments) versus buying a home.</p>
         </b-col>
       </b-row>
     </base-header>
