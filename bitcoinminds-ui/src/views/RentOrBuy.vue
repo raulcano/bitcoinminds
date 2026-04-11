@@ -13,41 +13,82 @@
 
       <!-- Summary cards -->
       <b-row class="mb-4">
-        <b-col md="4" sm="6" class="mb-3">
-          <b-card class="shadow h-100">
-            <div class="text-muted text-uppercase small font-weight-bold mb-2">Buy — Monthly costs</div>
-            <div class="mb-1"><span class="text-muted small">Mortgage only:</span> <strong>{{ fmtCurrency(derived.monthlyMortgage) }}</strong></div>
-            <div class="mb-1"><span class="text-muted small">Mortgage + extras:</span> <strong>{{ fmtCurrency(derived.monthlyTotal) }}</strong></div>
-            <div class="mb-1"><span class="text-muted small">Total paid:</span> <strong>{{ fmtCurrency(derived.totalPaid) }}</strong></div>
-            <div><span class="text-muted small">Interest paid:</span> <strong>{{ fmtCurrency(derived.interestPaid) }}</strong></div>
-          </b-card>
-        </b-col>
-        <b-col md="4" sm="6" class="mb-3">
-          <b-card class="shadow h-100">
-            <div class="text-muted text-uppercase small font-weight-bold mb-2">Buy — Property outcome</div>
-            <div class="mb-1"><span class="text-muted small">Purchase price:</span> <strong>{{ fmtCurrency(derived.purchasePrice) }}</strong></div>
-            <div class="mb-1"><span class="text-muted small">Loan amount:</span> <strong>{{ fmtCurrency(derived.loan) }}</strong></div>
-            <div><span class="text-muted small">House value at end:</span> <strong>{{ fmtCurrency(derived.houseValueEnd) }}</strong></div>
-          </b-card>
-        </b-col>
-        <b-col md="4" sm="6" class="mb-3">
-          <b-card class="shadow h-100">
-            <div class="text-muted text-uppercase small font-weight-bold mb-2">Rent — Outcome</div>
-            <div class="mb-1"><span class="text-muted small">Total rent paid:</span> <strong>{{ fmtCurrency(derived.totalRentPaid) }}</strong></div>
-            <div class="mb-1"><span class="text-muted small">Monthly diff (mortgage − rent):</span> <strong :class="derived.monthlyDiffDisplay >= 0 ? 'text-danger' : 'text-success'">{{ fmtCurrency(derived.monthlyDiffDisplay) }}</strong></div>
-            <div>
-              <span class="text-muted small">Renter savings portfolio:</span>
-              <strong :class="derived.renterSavings >= 0 ? 'text-success' : 'text-danger'">
-                {{ fmtCurrency(derived.renterSavings) }}
-              </strong>
+
+        <!-- Card 1: Result -->
+        <b-col md="4" sm="12" class="mb-3">
+          <b-card class="shadow h-100 result-card" :class="derived.renterSavings >= 0 ? 'result-rent' : 'result-buy'">
+            <div class="result-label text-uppercase font-weight-bold mb-3">Result</div>
+            <div class="result-verdict">
+              {{ derived.renterSavings >= 0 ? 'Rent' : 'Buy' }}
             </div>
-            <div class="mt-2">
-              <b-badge :variant="derived.renterSavings >= 0 ? 'success' : 'danger'" class="px-3 py-2">
-                {{ derived.renterSavings >= 0 ? 'Renting is better' : 'Buying is better' }}
-              </b-badge>
+            <div class="result-sub mt-2">
+              {{ derived.renterSavings >= 0 ? 'Renting and investing the difference gives a better financial outcome.' : 'Buying the property gives a better financial outcome.' }}
             </div>
           </b-card>
         </b-col>
+
+        <!-- Card 2: Purchase Info -->
+        <b-col md="4" sm="6" class="mb-3">
+          <b-card class="shadow h-100">
+            <div class="text-muted text-uppercase small font-weight-bold mb-3">Purchase info</div>
+            <div class="info-row">
+              <span class="info-label">Purchase price</span>
+              <strong>{{ fmtCurrency(derived.purchasePrice) }}</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Loan amount</span>
+              <strong>{{ fmtCurrency(derived.loan) }}</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Monthly mortgage</span>
+              <strong>{{ fmtCurrency(derived.monthlyMortgage) }}</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Monthly total (+ extras)</span>
+              <strong>{{ fmtCurrency(derived.monthlyTotal) }}</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Total mortgage paid</span>
+              <strong>{{ fmtCurrency(derived.totalPaid) }}</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Interest paid</span>
+              <strong class="text-danger">{{ fmtCurrency(derived.interestPaid) }}</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">House value at end</span>
+              <strong class="text-success">{{ fmtCurrency(derived.houseValueEnd) }}</strong>
+            </div>
+          </b-card>
+        </b-col>
+
+        <!-- Card 3: Rental Info -->
+        <b-col md="4" sm="6" class="mb-3">
+          <b-card class="shadow h-100">
+            <div class="text-muted text-uppercase small font-weight-bold mb-3">Rental info</div>
+            <div class="info-row">
+              <span class="info-label">Monthly rent</span>
+              <strong>{{ fmtCurrency(p.monthlyRent) }}</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Total rent paid</span>
+              <strong class="text-danger">{{ fmtCurrency(derived.totalRentPaid) }}</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Monthly diff (mortgage − rent)</span>
+              <strong :class="derived.monthlyDiffDisplay >= 0 ? 'text-danger' : 'text-success'">{{ fmtCurrency(derived.monthlyDiffDisplay) }}</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Savings rate (yearly)</span>
+              <strong>{{ p.savingsRatePct }}%</strong>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Renter savings portfolio</span>
+              <strong :class="derived.renterSavings >= 0 ? 'text-success' : 'text-danger'">{{ fmtCurrency(derived.renterSavings) }}</strong>
+            </div>
+          </b-card>
+        </b-col>
+
       </b-row>
 
       <!-- Charts -->
@@ -494,4 +535,36 @@ export default {
   width: 100%;
   accent-color: #5e72e4;
 }
+
+/* Result card */
+.result-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  min-height: 200px;
+}
+.result-card .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.result-rent { background: linear-gradient(135deg, #1aae6f 0%, #2dce89 100%); }
+.result-buy  { background: linear-gradient(135deg, #c0392b 0%, #f5365c 100%); }
+.result-label { color: rgba(255,255,255,0.8); font-size: 0.75rem; letter-spacing: 0.08em; }
+.result-verdict { color: #fff; font-size: 3.5rem; font-weight: 700; line-height: 1; }
+.result-sub { color: rgba(255,255,255,0.85); font-size: 0.85rem; max-width: 220px; }
+
+/* Info rows */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #f0f2f5;
+  font-size: 0.875rem;
+}
+.info-row:last-child { border-bottom: none; }
+.info-label { color: #8898aa; margin-right: 0.5rem; }
 </style>
