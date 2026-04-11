@@ -36,6 +36,13 @@
         </sidebar-item>
         <sidebar-item
                 :link="{
+                  name: 'Rent or buy',
+                  path: '/rent-or-buy',
+                  icon: 'ni ni-building text-teal',
+                }">
+        </sidebar-item>
+        <sidebar-item
+                :link="{
                   name: 'Need an expert?',
                   path: '/experts',
                   icon: 'ni ni-circle-08 text-warning',
