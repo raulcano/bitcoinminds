@@ -16,13 +16,13 @@
 
         <!-- Card 1: Result -->
         <b-col md="4" sm="12" class="mb-3">
-          <b-card class="shadow h-100 result-card" :class="derived.renterSavings >= 0 ? 'result-rent' : 'result-buy'">
+          <b-card class="shadow h-100 result-card" :class="derived.renterSavings >= derived.houseValueEnd ? 'result-rent' : 'result-buy'">
             <div class="result-label text-uppercase font-weight-bold mb-3">Result</div>
             <div class="result-verdict">
-              {{ derived.renterSavings >= 0 ? 'Rent' : 'Buy' }}
+              {{ derived.renterSavings >= derived.houseValueEnd ? 'Rent' : 'Buy' }}
             </div>
             <div class="result-sub mt-2">
-              {{ derived.renterSavings >= 0 ? 'Renting and investing the difference gives a better financial outcome.' : 'Buying the property gives a better financial outcome.' }}
+              {{ derived.renterSavings >= derived.houseValueEnd ? 'Renting and investing the difference gives a better financial outcome.' : 'Buying the property gives a better financial outcome.' }}
             </div>
           </b-card>
         </b-col>
