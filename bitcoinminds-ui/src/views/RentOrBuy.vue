@@ -22,7 +22,7 @@
               {{ derived.renterSavings >= derived.houseValueEnd ? 'Rent' : 'Buy' }}
             </div>
             <div class="result-sub mt-2">
-              {{ derived.renterSavings >= derived.houseValueEnd ? 'Renting and investing the difference gives a better financial outcome.' : 'Buying the property gives a better financial outcome.' }}
+              {{ derived.renterSavings >= derived.houseValueEnd ? 'Renting and investing the difference (with the equivalent mortgage payments) gives a better financial outcome. That is, the generated portfolio has bigger value than the value of the house at the end of the period.' : 'Buying the property gives a better financial outcome.' }}
             </div>
           </b-card>
         </b-col>
