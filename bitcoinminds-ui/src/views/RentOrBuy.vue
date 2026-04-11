@@ -354,18 +354,23 @@ export default {
       return { labels, data };
     },
 
-    makeChartOptions(yLabel) {
+    makeChartOptions() {
       const self = this;
       return {
         responsive: true,
         maintainAspectRatio: false,
-        legend: { display: false },
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { fontSize: 11, boxWidth: 14 },
+        },
         tooltips: {
           mode: 'index',
           intersect: false,
           callbacks: {
-            label(item) {
-              return ' ' + self.fmtCurrency(item.yLabel);
+            label(item, data) {
+              const label = data.datasets[item.datasetIndex].label || '';
+              return ' ' + label + ': ' + self.fmtCurrency(item.yLabel);
             },
           },
         },
@@ -386,14 +391,28 @@ export default {
             gridLines: { color: '#e9ecef' },
           }],
         },
-        annotation: { annotations: [] },
+      };
+    },
+
+    houseLineDataset(length) {
+      const hv = this.derived.houseValueEnd;
+      return {
+        label: 'House value (end)',
+        data: Array(length).fill(hv),
+        borderColor: '#5e72e4',
+        borderWidth: 2,
+        borderDash: [6, 4],
+        backgroundColor: 'transparent',
+        pointRadius: 0,
+        fill: false,
+        lineTension: 0,
       };
     },
 
     coloredDataset(data) {
-      // Green above zero, red below
       const colors = data.map(v => v >= 0 ? 'rgba(45,206,137,0.7)' : 'rgba(245,54,92,0.7)');
       return {
+        label: 'Renter savings portfolio',
         data,
         backgroundColor: colors,
         borderColor: colors,
@@ -412,20 +431,20 @@ export default {
 
       this.charts.mortgage = new Chart(this.$refs.chartMortgage, {
         type: 'line',
-        data: { labels: ml, datasets: [this.coloredDataset(md)] },
-        options: this.makeChartOptions('Renter savings'),
+        data: { labels: ml, datasets: [this.coloredDataset(md), this.houseLineDataset(ml.length)] },
+        options: this.makeChartOptions(),
       });
 
       this.charts.savings = new Chart(this.$refs.chartSavings, {
         type: 'line',
-        data: { labels: sl, datasets: [this.coloredDataset(sd)] },
-        options: this.makeChartOptions('Renter savings'),
+        data: { labels: sl, datasets: [this.coloredDataset(sd), this.houseLineDataset(sl.length)] },
+        options: this.makeChartOptions(),
       });
 
       this.charts.downpayment = new Chart(this.$refs.chartDownpayment, {
         type: 'line',
-        data: { labels: dl, datasets: [this.coloredDataset(dd)] },
-        options: this.makeChartOptions('Renter savings'),
+        data: { labels: dl, datasets: [this.coloredDataset(dd), this.houseLineDataset(dl.length)] },
+        options: this.makeChartOptions(),
       });
     },
 
@@ -435,16 +454,19 @@ export default {
       const { labels: ml, data: md } = this.buildMortgageChartData();
       this.charts.mortgage.data.labels = ml;
       this.charts.mortgage.data.datasets[0] = this.coloredDataset(md);
+      this.charts.mortgage.data.datasets[1] = this.houseLineDataset(ml.length);
       this.charts.mortgage.update();
 
       const { labels: sl, data: sd } = this.buildSavingsChartData();
       this.charts.savings.data.labels = sl;
       this.charts.savings.data.datasets[0] = this.coloredDataset(sd);
+      this.charts.savings.data.datasets[1] = this.houseLineDataset(sl.length);
       this.charts.savings.update();
 
       const { labels: dl, data: dd } = this.buildDownpaymentChartData();
       this.charts.downpayment.data.labels = dl;
       this.charts.downpayment.data.datasets[0] = this.coloredDataset(dd);
+      this.charts.downpayment.data.datasets[1] = this.houseLineDataset(dl.length);
       this.charts.downpayment.update();
     },
 
