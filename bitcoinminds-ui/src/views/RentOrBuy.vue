@@ -4,7 +4,7 @@
       <b-row>
         <b-col>
           <h1 class="text-white">Rent or Buy?</h1>
-          <p class="text-white">Compare the financial outcome of renting (and investing the difference) versus buying a home.</p>
+          <p class="text-white">Compare the financial outcome of renting (and investing the difference between the mortgage and rental monthly payments) versus buying a home.</p>
         </b-col>
       </b-row>
     </base-header>
@@ -22,7 +22,7 @@
               {{ derived.renterSavings >= derived.houseValueEnd ? 'Rent' : 'Buy' }}
             </div>
             <div class="result-sub mt-2">
-              {{ derived.renterSavings >= derived.houseValueEnd ? 'Renting and investing the difference gives a better financial outcome.' : 'Buying the property gives a better financial outcome.' }}
+              {{ derived.renterSavings >= derived.houseValueEnd ? 'Renting and investing the difference (with the equivalent mortgage payments) gives a better financial outcome. That is, the generated portfolio has bigger value than the value of the house at the end of the period.' : 'Buying the property gives a better financial outcome.' }}
             </div>
           </b-card>
         </b-col>
@@ -33,31 +33,31 @@
             <div class="text-muted text-uppercase small font-weight-bold mb-3">Purchase info</div>
             <div class="info-row">
               <span class="info-label">Purchase price</span>
-              <strong>{{ fmtCurrency(derived.purchasePrice) }}</strong>
+              <strong v-b-tooltip.hover.left title="Listing price × (1 + side costs %). Covers the property price plus taxes, notary fees and other transaction costs.">{{ fmtCurrency(derived.purchasePrice) }}</strong>
             </div>
             <div class="info-row">
               <span class="info-label">Loan amount</span>
-              <strong>{{ fmtCurrency(derived.loan) }}</strong>
+              <strong v-b-tooltip.hover.left title="Purchase price − Downpayment. This is the principal borrowed from the bank.">{{ fmtCurrency(derived.loan) }}</strong>
             </div>
             <div class="info-row">
               <span class="info-label">Monthly mortgage</span>
-              <strong>{{ fmtCurrency(derived.monthlyMortgage) }}</strong>
+              <strong v-b-tooltip.hover.left title="Fixed monthly payment calculated with the standard annuity formula: Loan × monthly_rate × (1 + monthly_rate)^periods ÷ ((1 + monthly_rate)^periods − 1). Covers principal repayment and interest.">{{ fmtCurrency(derived.monthlyMortgage) }}</strong>
             </div>
             <div class="info-row">
               <span class="info-label">Monthly total (+ extras)</span>
-              <strong>{{ fmtCurrency(derived.monthlyTotal) }}</strong>
+              <strong v-b-tooltip.hover.left title="Monthly mortgage + (Additional yearly expenses ÷ 12). Includes property tax, maintenance and other recurring ownership costs on top of the mortgage.">{{ fmtCurrency(derived.monthlyTotal) }}</strong>
             </div>
             <div class="info-row">
               <span class="info-label">Total mortgage paid</span>
-              <strong>{{ fmtCurrency(derived.totalPaid) }}</strong>
+              <strong v-b-tooltip.hover.left title="Monthly mortgage × total number of months (Years × 12). The full amount transferred to the bank over the life of the mortgage, including interest.">{{ fmtCurrency(derived.totalPaid) }}</strong>
             </div>
             <div class="info-row">
               <span class="info-label">Interest paid</span>
-              <strong class="text-danger">{{ fmtCurrency(derived.interestPaid) }}</strong>
+              <strong class="text-danger" v-b-tooltip.hover.left title="Total mortgage paid − Loan amount. The portion of your payments that goes to the bank as interest rather than reducing your debt.">{{ fmtCurrency(derived.interestPaid) }}</strong>
             </div>
             <div class="info-row">
               <span class="info-label">House value at end</span>
-              <strong class="text-success">{{ fmtCurrency(derived.houseValueEnd) }}</strong>
+              <strong class="text-success" v-b-tooltip.hover.left title="Listing price × (1 + market appreciation)^years. The estimated market value of the property after the full mortgage period, assuming steady yearly appreciation.">{{ fmtCurrency(derived.houseValueEnd) }}</strong>
             </div>
           </b-card>
         </b-col>
@@ -68,23 +68,23 @@
             <div class="text-muted text-uppercase small font-weight-bold mb-3">Rental info</div>
             <div class="info-row">
               <span class="info-label">Monthly rent</span>
-              <strong>{{ fmtCurrency(p.monthlyRent) }}</strong>
+              <strong v-b-tooltip.hover.left title="The fixed monthly rent payment set in the parameters. Assumed constant over the entire period.">{{ fmtCurrency(p.monthlyRent) }}</strong>
             </div>
             <div class="info-row">
               <span class="info-label">Total rent paid</span>
-              <strong class="text-danger">{{ fmtCurrency(derived.totalRentPaid) }}</strong>
+              <strong class="text-danger" v-b-tooltip.hover.left title="Monthly rent × total number of months (Years × 12). The cumulative amount paid to the landlord with no asset to show for it at the end.">{{ fmtCurrency(derived.totalRentPaid) }}</strong>
             </div>
             <div class="info-row">
               <span class="info-label">Monthly diff (mortgage − rent)</span>
-              <strong :class="derived.monthlyDiffDisplay >= 0 ? 'text-danger' : 'text-success'">{{ fmtCurrency(derived.monthlyDiffDisplay) }}</strong>
+              <strong :class="derived.monthlyDiffDisplay >= 0 ? 'text-danger' : 'text-success'" v-b-tooltip.hover.left title="Monthly total (mortgage + extras) − Monthly rent. Positive means the buyer pays more each month; negative means the renter pays more. This monthly gap is what the renter can invest (or must fund from savings).">{{ fmtCurrency(derived.monthlyDiffDisplay) }}</strong>
             </div>
             <div class="info-row">
               <span class="info-label">Savings rate (yearly)</span>
-              <strong>{{ p.savingsRatePct }}%</strong>
+              <strong v-b-tooltip.hover.left title="The assumed yearly return on the renter's invested savings. Set in the parameters. The renter invests the downpayment and adjusts each month by the cost difference vs buying.">{{ p.savingsRatePct }}%</strong>
             </div>
             <div class="info-row">
               <span class="info-label">Renter savings portfolio</span>
-              <strong :class="derived.renterSavings >= 0 ? 'text-success' : 'text-danger'">{{ fmtCurrency(derived.renterSavings) }}</strong>
+              <strong :class="derived.renterSavings >= 0 ? 'text-success' : 'text-danger'" v-b-tooltip.hover.left title="Downpayment × FV(savings rate, years) + (Monthly mortgage − Monthly rent) × FV_annuity(savings rate, years). Models investing the downpayment at the savings rate while accounting for the monthly cost difference between renting and buying.">{{ fmtCurrency(derived.renterSavings) }}</strong>
             </div>
           </b-card>
         </b-col>
