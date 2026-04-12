@@ -32,14 +32,18 @@
                   name: 'Calculator',
                   path: '/calculator',
                   icon: 'ni ni-chart-bar-32 text-orange',
-                }">
+                }"
+                id="sidebar-calculator"
+                >
         </sidebar-item>
         <sidebar-item
                 :link="{
                   name: 'Rent or buy',
                   path: '/rent-or-buy',
                   icon: 'ni ni-building text-teal',
-                }">
+                }"
+                id="sidebar-rent-or-buy"
+                >
         </sidebar-item>
         <sidebar-item
                 :link="{
@@ -225,6 +229,16 @@
       });
       this.$tippy('#experts', {
         content: 'Book a one-on-one session with an expert',
+        allowHTML: true,
+        placement: 'auto',
+      });
+      this.$tippy('#sidebar-calculator', {
+        content: 'Calculate if you can live off perpetually rolling Bitcoin backed loans',
+        allowHTML: true,
+        placement: 'auto',
+      });
+      this.$tippy('#sidebar-rent-or-buy', {
+        content: 'Analyze whether it is better to rent or buy a home, based on your own configurable assumptions',
         allowHTML: true,
         placement: 'auto',
       });
